@@ -1,4 +1,4 @@
-import { SET_PDF_PAGINATED } from "doc-viewer/state/actions";
+import { setPDFPaginated } from "doc-viewer/state/actions";
 import { AppContext } from "doc-viewer/state/Context";
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
@@ -11,9 +11,7 @@ const SwitchLayoutButton: FC<{}> = () => {
 
   return (
     <Container
-      onMouseDown={() =>
-        dispatch({ type: SET_PDF_PAGINATED, value: !config.pdf?.paginated })
-      }
+      onMouseDown={() => dispatch(setPDFPaginated(!config.pdf?.paginated))}
     >
       {String.fromCharCode(9830)}
     </Container>

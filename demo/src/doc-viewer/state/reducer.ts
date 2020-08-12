@@ -3,14 +3,12 @@ import {
   DocumentActions,
   NEXT_DOCUMENT,
   PREVIOUS_DOCUMENT,
+  SetAllDocuments,
   SetConfig,
-  SetDocument,
-  SetFilePaths,
-  SET_CONFIG,
-  SET_DOCUMENT,
-  SET_FILE_PATHS,
-  SET_PDF_PAGINATED,
   SetPDFPaginated,
+  SET_ALL_DOCUMENTS,
+  SET_CONFIG,
+  SET_PDF_PAGINATED,
 } from "./actions";
 
 const initialConfig: DocViewerConfig = {
@@ -20,8 +18,8 @@ const initialConfig: DocViewerConfig = {
 export const initialState: State = {
   config: initialConfig,
   currentFileNo: 0,
-  filePaths: [],
-  currentPath: "",
+  documents: [],
+  currentDocument: null,
 };
 
 export const reducer = (
@@ -34,36 +32,27 @@ export const reducer = (
       return { ...state, config: config || initialConfig };
     }
 
+    case SET_ALL_DOCUMENTS: {
+      const { documents } = action as SetAllDocuments;
+      return { ...state, documents, currentDocument: documents[0] || null };
+    }
+
     case NEXT_DOCUMENT: {
-      const nextFile = state.currentFileNo + 1;
+      const nextDocumentNo = state.currentFileNo + 1;
       return {
         ...state,
-        currentFileNo: nextFile,
-        currentPath: state.filePaths[nextFile],
+        currentFileNo: nextDocumentNo,
+        currentDocument: state.documents[nextDocumentNo],
       };
     }
 
     case PREVIOUS_DOCUMENT: {
-      const prevFile = state.currentFileNo - 1;
+      const prevDocumentNo = state.currentFileNo - 1;
       return {
         ...state,
         currentFileNo: state.currentFileNo - 1,
-        currentPath: state.filePaths[prevFile],
+        currentDocument: state.documents[prevDocumentNo],
       };
-    }
-
-    case SET_DOCUMENT: {
-      const { value } = action as SetDocument;
-      return {
-        ...state,
-        currentFileNo: value,
-        currentPath: state.filePaths[value],
-      };
-    }
-
-    case SET_FILE_PATHS: {
-      const { filePaths } = action as SetFilePaths;
-      return { ...state, filePaths, currentPath: filePaths[0] || "" };
     }
 
     case SET_PDF_PAGINATED: {

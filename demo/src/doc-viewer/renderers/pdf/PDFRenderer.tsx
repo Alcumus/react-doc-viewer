@@ -10,7 +10,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const PDFRenderer: FC<{}> = () => {
   const {
-    state: { currentPath, config },
+    state: { currentDocument, config },
   } = useContext(AppContext);
 
   const [numPages, setNumPages] = useState<number>(null);
@@ -19,7 +19,7 @@ const PDFRenderer: FC<{}> = () => {
   useEffect(() => {
     setNumPages(null);
     setPageNum(1);
-  }, [currentPath]);
+  }, [currentDocument]);
 
   if (config.pdf?.paginated) {
     return (
@@ -36,7 +36,7 @@ const PDFRenderer: FC<{}> = () => {
         )}
 
         <Document
-          file={currentPath}
+          file={currentDocument.uri}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
           loading={<span>Loading...</span>}
         >
@@ -59,7 +59,7 @@ const PDFRenderer: FC<{}> = () => {
         <SwitchLayoutButton />
 
         <Document
-          file={currentPath}
+          file={currentDocument.uri}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
           loading={<span>Loading...</span>}
         >

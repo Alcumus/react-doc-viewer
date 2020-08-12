@@ -7,7 +7,7 @@ import React, {
   useEffect,
   useReducer,
 } from "react";
-import { DocumentActions, SET_CONFIG, SET_FILE_PATHS } from "./actions";
+import { DocumentActions, setAllDocuments, setConfig } from "./actions";
 import { initialState, reducer } from "./reducer";
 
 const AppContext = createContext<{
@@ -15,15 +15,15 @@ const AppContext = createContext<{
   dispatch: Dispatch<DocumentActions>;
 }>({ state: initialState, dispatch: () => null });
 
-const AppProvider: FC<DocViewerProps> = ({ children, filePaths, config }) => {
+const AppProvider: FC<DocViewerProps> = ({ children, documents, config }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   // On inital load, and whenever they change,
-  // replace config and filepaths with th eprops passed in
+  // replace config and documents with th eprops passed in
   useEffect(() => {
-    dispatch({ type: SET_CONFIG, config });
-    dispatch({ type: SET_FILE_PATHS, filePaths });
-  }, [config, filePaths]);
+    dispatch(setConfig(config));
+    dispatch(setAllDocuments(documents));
+  }, [config, documents]);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

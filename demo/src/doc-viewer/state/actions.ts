@@ -1,4 +1,4 @@
-import { DocViewerConfig } from "doc-viewer/types";
+import { DocViewerConfig, IDocument } from "doc-viewer/types";
 
 export const SET_CONFIG: string = "SET_CONFIG";
 export interface SetConfig {
@@ -26,26 +26,15 @@ export const previousDocument = (): PreviousDocument => ({
   type: PREVIOUS_DOCUMENT,
 });
 
-// SET_DOCUMENT
-export const SET_DOCUMENT: string = "SET_DOCUMENT";
-export interface SetDocument {
-  type: typeof SET_DOCUMENT;
-  value: number;
+// SET_DOCUMENTS
+export const SET_ALL_DOCUMENTS: string = "SET_ALL_DOCUMENTS";
+export interface SetAllDocuments {
+  type: typeof SET_ALL_DOCUMENTS;
+  documents: IDocument[];
 }
-export const setDocument = (value: number): SetDocument => ({
-  type: SET_DOCUMENT,
-  value,
-});
-
-// SET_FILE_PATHS
-export const SET_FILE_PATHS: string = "SET_FILE_PATHS";
-export interface SetFilePaths {
-  type: typeof SET_FILE_PATHS;
-  filePaths: string[];
-}
-export const setFilePaths = (filePaths: string[]): SetFilePaths => ({
-  type: SET_FILE_PATHS,
-  filePaths,
+export const setAllDocuments = (documents: IDocument[]): SetAllDocuments => ({
+  type: SET_ALL_DOCUMENTS,
+  documents,
 });
 
 // SET_PAGINATED
@@ -63,6 +52,5 @@ export type DocumentActions =
   | SetConfig
   | NextDocument
   | PreviousDocument
-  | SetDocument
-  | SetFilePaths
+  | SetAllDocuments
   | SetPDFPaginated;

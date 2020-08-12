@@ -4,12 +4,12 @@ import styled from "styled-components";
 
 const FileName: FC<{}> = (): JSX.Element => {
   const {
-    state: { filePaths, currentPath },
+    state: { documents, currentDocument },
   } = useContext(AppContext);
 
-  if (!filePaths.length) return null;
+  if (!documents.length) return null;
 
-  let fileName = currentPath;
+  let fileName = currentDocument.uri;
 
   const splitURL = fileName.split("/");
   if (splitURL.length) {

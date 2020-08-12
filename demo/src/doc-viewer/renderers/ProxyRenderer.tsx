@@ -6,18 +6,22 @@ import PNGRenderer from "doc-viewer/renderers/png/PNGRenderer";
 
 const ProxyRenderer: FC<{}> = () => {
   const {
-    state: { filePaths, currentPath },
+    state: { documents, currentDocument },
   } = useContext(AppContext);
 
-  if (!filePaths.length) return null;
+  if (!documents.length) return null;
 
   let FileLoader: DocLoader = null;
 
-  const splitURL = currentPath.split(".");
+  const splitURL = currentDocument.uri.split(".");
   if (splitURL.length) {
     const _fileType = splitURL[splitURL.length - 1];
     if (_fileType === "pdf") {
       FileLoader = PDFRenderer;
+    } else if (_fileType === "png") {
+      FileLoader = PNGRenderer;
+    } else if (_fileType === "jpg" || _fileType === "jpeg") {
+      FileLoader = PNGRenderer;
     } else {
       FileLoader = PNGRenderer;
     }

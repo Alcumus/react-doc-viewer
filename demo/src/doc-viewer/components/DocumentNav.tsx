@@ -1,17 +1,17 @@
-import { NEXT_DOCUMENT, PREVIOUS_DOCUMENT } from "doc-viewer/state/actions";
+import { nextDocument, previousDocument } from "doc-viewer/state/actions";
 import { AppContext } from "doc-viewer/state/Context";
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 
 const DocumentNav: FC<{}> = (): JSX.Element => {
   const {
-    state: { currentFileNo, filePaths, currentPath },
+    state: { currentFileNo, documents, currentDocument },
     dispatch,
   } = useContext(AppContext);
 
-  if (!filePaths.length) return null;
+  if (!documents.length) return null;
 
-  let fileName = currentPath;
+  let fileName = currentDocument.uri;
 
   const splitURL = fileName.split("/");
   if (splitURL.length) {
@@ -21,19 +21,19 @@ const DocumentNav: FC<{}> = (): JSX.Element => {
   return (
     <Container>
       <span>
-        Document {currentFileNo + 1} of {filePaths.length}
+        Document {currentFileNo + 1} of {documents.length}
       </span>
 
       <Button
-        onClick={() => dispatch({ type: PREVIOUS_DOCUMENT })}
+        onClick={() => dispatch(previousDocument())}
         disabled={currentFileNo === 0}
       >
         {"<"}
       </Button>
 
       <button
-        onClick={() => dispatch({ type: NEXT_DOCUMENT })}
-        disabled={currentFileNo >= filePaths.length - 1}
+        onClick={() => dispatch(nextDocument())}
+        disabled={currentFileNo >= documents.length - 1}
       >
         {">"}
       </button>
