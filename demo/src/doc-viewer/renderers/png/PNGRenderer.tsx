@@ -9,7 +9,7 @@ const PNGRenderer: FC<{}> = () => {
 
   return (
     <Container>
-      <img src={currentPath} />
+      <Img src={currentPath} />
     </Container>
   );
 };
@@ -21,7 +21,16 @@ const Container = styled.div`
   flex: 1;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  background-color: #eee;
-  padding-bottom: 30px;
+
+  /* background-color: #eee; */
+  background-image: linear-gradient(45deg, #808080 25%, transparent 25%),
+    linear-gradient(-45deg, #808080 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #808080 75%),
+    linear-gradient(-45deg, transparent 75%, #808080 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+`;
+
+const Img = styled.img`
+  width: 50%;
 `;
