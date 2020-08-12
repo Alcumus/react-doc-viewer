@@ -1,3 +1,3 @@
-import DocViewer from "./doc-viewer";
+import DocViewer from "./DocViewer";
 
 export { DocViewer };
