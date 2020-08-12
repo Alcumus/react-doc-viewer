@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import ProxyRenderer from "./components/ProxyRenderer";
+import ProxyRenderer from "./renderers/ProxyRenderer";
 import HeaderBar from "./components/HeaderBar";
 import { AppProvider } from "./state/Context";
 import { DocViewerConfig } from "./types";
