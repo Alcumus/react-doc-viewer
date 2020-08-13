@@ -1,5 +1,5 @@
-import { DocViewer } from "doc-viewer";
 import React from "react";
+import { DocViewer } from "./doc-viewer";
 
 function App() {
   return (
@@ -10,7 +10,7 @@ function App() {
             "https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf",
         },
         {
-          uri: require("example-files/pdf.pdf"),
+          uri: require("./example-files/pdf.pdf"),
         },
         {
           uri:
