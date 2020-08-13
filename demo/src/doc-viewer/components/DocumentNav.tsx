@@ -9,7 +9,7 @@ const DocumentNav: FC<{}> = (): JSX.Element => {
     dispatch,
   } = useContext(AppContext);
 
-  if (!documents.length) return null;
+  if (!documents.length || !currentDocument) return null;
 
   let fileName = currentDocument.uri;
 

@@ -1,5 +1,5 @@
 import { DocViewerProps } from "doc-viewer/DocViewer";
-import { State } from "doc-viewer/types";
+import { MainState } from "doc-viewer/types";
 import React, {
   createContext,
   Dispatch,
@@ -7,23 +7,25 @@ import React, {
   useEffect,
   useReducer,
 } from "react";
-import { DocumentActions, setAllDocuments, setConfig } from "./actions";
-import { initialState, reducer } from "./reducer";
+import { DocumentActions, setAllDocuments } from "./actions";
+import { initialConfig, initialState, reducer } from "./reducer";
 
 const AppContext = createContext<{
-  state: State;
+  state: MainState;
   dispatch: Dispatch<DocumentActions>;
 }>({ state: initialState, dispatch: () => null });
 
 const AppProvider: FC<DocViewerProps> = ({ children, documents, config }) => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, {
+    ...initialState,
+    config: config || initialConfig,
+  });
 
   // On inital load, and whenever they change,
-  // replace config and documents with th eprops passed in
+  // replace documents with the new props passed in
   useEffect(() => {
-    dispatch(setConfig(config));
     dispatch(setAllDocuments(documents));
-  }, [config, documents]);
+  }, [documents]);
 
   return (
     <AppContext.Provider value={{ state, dispatch }}>

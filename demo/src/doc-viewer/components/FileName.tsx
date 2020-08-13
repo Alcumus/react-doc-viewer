@@ -4,10 +4,10 @@ import styled from "styled-components";
 
 const FileName: FC<{}> = (): JSX.Element => {
   const {
-    state: { documents, currentDocument },
+    state: { currentDocument },
   } = useContext(AppContext);
 
-  if (!documents.length) return null;
+  if (!currentDocument) return null;
 
   let fileName = currentDocument.uri;
 

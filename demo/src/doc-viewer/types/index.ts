@@ -1,9 +1,15 @@
 import { FC } from "react";
 
-export type FileExt = "pdf" | "png";
+export type FileType =
+  | "application/pdf"
+  | "image/png"
+  | "image/jpg"
+  | "image/jpeg";
+
 export interface IDocument {
   uri: string;
-  fileType?: FileExt;
+  fileType?: FileType;
+  base64Data?: string;
 }
 
 export type DocLoader = FC<{}>;
@@ -16,7 +22,7 @@ export interface PDFConfig {
   paginated?: boolean;
 }
 
-export type State = {
+export type MainState = {
   config: DocViewerConfig;
   currentFileNo: number;
   documents: IDocument[];

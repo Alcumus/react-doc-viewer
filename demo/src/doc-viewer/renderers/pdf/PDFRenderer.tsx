@@ -36,7 +36,7 @@ const PDFRenderer: FC<{}> = () => {
         )}
 
         <Document
-          file={currentDocument.uri}
+          file={currentDocument.base64Data}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
           loading={<span>Loading...</span>}
         >
@@ -59,7 +59,7 @@ const PDFRenderer: FC<{}> = () => {
         <SwitchLayoutButton />
 
         <Document
-          file={currentDocument.uri}
+          file={currentDocument.base64Data}
           onLoadSuccess={({ numPages }) => setNumPages(numPages)}
           loading={<span>Loading...</span>}
         >

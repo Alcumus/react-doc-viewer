@@ -1,33 +1,23 @@
 import PDFRenderer from "doc-viewer/renderers/pdf/PDFRenderer";
-import { AppContext } from "doc-viewer/state/Context";
-import React, { FC, useContext } from "react";
-import { DocLoader } from "doc-viewer/types";
 import PNGRenderer from "doc-viewer/renderers/png/PNGRenderer";
+import { useDocumentLoader } from "doc-viewer/utils";
+import React, { FC } from "react";
+import JPGRenderer from "./jpg/JPGRenderer";
 
 const ProxyRenderer: FC<{}> = () => {
-  const {
-    state: { documents, currentDocument },
-  } = useContext(AppContext);
+  const { currentDocument } = useDocumentLoader();
 
-  if (!documents.length) return null;
-
-  let FileLoader: DocLoader = null;
-
-  const splitURL = currentDocument.uri.split(".");
-  if (splitURL.length) {
-    const _fileType = splitURL[splitURL.length - 1];
-    if (_fileType === "pdf") {
-      FileLoader = PDFRenderer;
-    } else if (_fileType === "png") {
-      FileLoader = PNGRenderer;
-    } else if (_fileType === "jpg" || _fileType === "jpeg") {
-      FileLoader = PNGRenderer;
-    } else {
-      FileLoader = PNGRenderer;
-    }
+  switch (currentDocument?.fileType) {
+    case "application/pdf":
+      return <PDFRenderer />;
+    case "image/png":
+      return <PNGRenderer />;
+    case "image/jpg":
+    case "image/jpeg":
+      return <JPGRenderer />;
+    default:
+      return null;
   }
-
-  return <FileLoader />;
 };
 
 export default ProxyRenderer;
