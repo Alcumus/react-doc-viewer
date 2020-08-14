@@ -20,7 +20,7 @@ const PDFPages: FC<{}> = () => {
     dispatch(setNumPages(0));
   }, [currentDocument, dispatch]);
 
-  if (!currentDocument) return null;
+  if (!currentDocument || currentDocument.base64Data === undefined) return null;
 
   return (
     <DocumentPDF
