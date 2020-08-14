@@ -4,8 +4,8 @@ import React, { FC, useContext, useEffect, useState } from "react";
 import { Document, pdfjs } from "react-pdf";
 import styled from "styled-components";
 import { AppContext } from "../../state/Context";
+import PDFControls from "./PDFControls";
 import { AllPages, SinglePage } from "./PDFPages";
-import SwitchLayoutButton from "./SwitchLayoutButton";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
@@ -27,7 +27,7 @@ const PDFRenderer: FC<{}> = () => {
   if (config.pdf?.paginated) {
     return (
       <Container>
-        <SwitchLayoutButton />
+        <PDFControls />
 
         {numPages > 1 && (
           <PageNavButton
@@ -59,7 +59,7 @@ const PDFRenderer: FC<{}> = () => {
   } else {
     return (
       <Container>
-        <SwitchLayoutButton />
+        <PDFControls />
 
         <Document
           file={currentDocument.base64Data}
