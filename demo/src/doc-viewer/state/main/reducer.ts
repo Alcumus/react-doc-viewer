@@ -1,25 +1,28 @@
-import { DocViewerConfig, MainState } from "../types";
+import { DocRenderer, IDocument } from "../../types";
 import {
   DocumentActions,
   NEXT_DOCUMENT,
   PREVIOUS_DOCUMENT,
   SetAllDocuments,
-  SetPDFPaginated,
+  SetCurrentRenderer,
   SET_ALL_DOCUMENTS,
-  SET_PDF_PAGINATED,
+  SET_CURRENT_RENDERER,
   UpdateCurrentDocument,
   UPDATE_CURRENT_DOCUMENT,
 } from "./actions";
 
-export const initialConfig: DocViewerConfig = {
-  pdf: { paginated: false },
+export type MainState = {
+  currentFileNo: number;
+  documents: IDocument[];
+  currentDocument?: IDocument;
+  CurrentRenderer?: DocRenderer;
 };
 
 export const initialState: MainState = {
-  config: initialConfig,
   currentFileNo: 0,
   documents: [],
   currentDocument: undefined,
+  CurrentRenderer: undefined,
 };
 
 export const reducer = (
@@ -27,6 +30,11 @@ export const reducer = (
   action: DocumentActions
 ): MainState => {
   switch (action.type) {
+    case SET_CURRENT_RENDERER: {
+      const { renderer } = action as SetCurrentRenderer;
+      return { ...state, CurrentRenderer: renderer };
+    }
+
     case SET_ALL_DOCUMENTS: {
       const { documents } = action as SetAllDocuments;
       return { ...state, documents, currentDocument: documents[0] || null };
@@ -55,17 +63,6 @@ export const reducer = (
       return {
         ...state,
         currentDocument: document,
-      };
-    }
-
-    case SET_PDF_PAGINATED: {
-      const { value } = action as SetPDFPaginated;
-      return {
-        ...state,
-        config: {
-          ...state.config,
-          pdf: { ...state.config.pdf, paginated: value },
-        },
       };
     }
 

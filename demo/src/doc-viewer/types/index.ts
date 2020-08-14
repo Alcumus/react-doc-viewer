@@ -1,3 +1,7 @@
+import JPGRenderer from "../renderers/jpg/JPGRenderer";
+import PDFRenderer from "../renderers/pdf/PDFRenderer";
+import PNGRenderer from "../renderers/png/PNGRenderer";
+
 export type FileType =
   | "application/pdf"
   | "image/png"
@@ -10,17 +14,7 @@ export interface IDocument {
   base64Data?: string;
 }
 
-export interface DocViewerConfig {
-  pdf?: PDFConfig;
-}
-
-export interface PDFConfig {
-  paginated?: boolean;
-}
-
-export type MainState = {
-  config: DocViewerConfig;
-  currentFileNo: number;
-  documents: IDocument[];
-  currentDocument?: IDocument;
-};
+export type DocRenderer =
+  | typeof PDFRenderer
+  | typeof PNGRenderer
+  | typeof JPGRenderer;

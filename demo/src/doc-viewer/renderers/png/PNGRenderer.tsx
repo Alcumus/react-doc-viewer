@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "../../state/Context";
+import { AppContext } from "../../state/main/Context";
 
 const PNGRenderer: FC<{}> = () => {
   const {

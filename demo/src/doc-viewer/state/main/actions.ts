@@ -1,4 +1,14 @@
-import { IDocument } from "../types";
+import { IDocument, DocRenderer } from "../../types";
+
+// SET_CURRENT_RENDERER
+export const SET_CURRENT_RENDERER: string = "SET_CURRENT_RENDERER";
+export interface SetCurrentRenderer {
+  type: typeof SET_CURRENT_RENDERER;
+  renderer: DocRenderer;
+}
+export const setCurrentRenderer = (
+  renderer: DocRenderer
+): SetCurrentRenderer => ({ type: SET_CURRENT_RENDERER, renderer });
 
 // SET_DOCUMENTS
 export const SET_ALL_DOCUMENTS: string = "SET_ALL_DOCUMENTS";
@@ -37,20 +47,9 @@ export const updateCurrentDocument = (
   document: IDocument
 ): UpdateCurrentDocument => ({ type: UPDATE_CURRENT_DOCUMENT, document });
 
-// SET_PAGINATED
-export const SET_PDF_PAGINATED: string = "SET_PDF_PAGINATED";
-export interface SetPDFPaginated {
-  type: typeof SET_PDF_PAGINATED;
-  value: boolean;
-}
-export const setPDFPaginated = (value: boolean): SetPDFPaginated => ({
-  type: SET_PDF_PAGINATED,
-  value,
-});
-
 export type DocumentActions =
+  | SetCurrentRenderer
+  | SetAllDocuments
   | NextDocument
   | PreviousDocument
-  | SetAllDocuments
-  | UpdateCurrentDocument
-  | SetPDFPaginated;
+  | UpdateCurrentDocument;

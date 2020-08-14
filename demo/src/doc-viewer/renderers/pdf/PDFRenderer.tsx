@@ -1,96 +1,48 @@
 // @ts-ignore
 import * as pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
-import React, { FC, useContext, useEffect, useState } from "react";
-import { Document, pdfjs } from "react-pdf";
+import React, { FC, useEffect, useContext } from "react";
+import { pdfjs } from "react-pdf";
 import styled from "styled-components";
-import { AppContext } from "../../state/Context";
+import { PDFProvider } from "../../state/pdf/Context";
 import PDFControls from "./PDFControls";
-import { AllPages, SinglePage } from "./PDFPages";
+import PDFPages from "./PDFPages";
+import { AppContext } from "../../state/main/Context";
+import { setCurrentRenderer } from "../../state/main/actions";
+import { FileType } from "../../types";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const PDFRenderer: FC<{}> = () => {
-  const {
-    state: { currentDocument, config },
-  } = useContext(AppContext);
+  const docTypes: FileType[] = ["application/pdf"];
 
-  const [numPages, setNumPages] = useState<number>(0);
-  const [pageNum, setPageNum] = useState<number>(1);
+  // const {
+  //   state: { currentDocument },
+  //   dispatch,
+  // } = useContext(AppContext);
 
-  useEffect(() => {
-    setNumPages(0);
-    setPageNum(1);
-  }, [currentDocument]);
+  // useEffect(() => {
+  //   if (!currentDocument) return;
+  //   if (currentDocument.fileType === undefined) return;
 
-  if (!currentDocument) return null;
+  //   if (docTypes.indexOf(currentDocument?.fileType) >= 0) {
+  //     dispatch(setCurrentRenderer(PDFRenderer));
+  //   }
+  // }, [currentDocument]);
 
-  if (config.pdf?.paginated) {
-    return (
+  return (
+    <PDFProvider>
       <Container>
         <PDFControls />
-
-        {numPages > 1 && (
-          <PageNavButton
-            onClick={() => setPageNum(pageNum - 1)}
-            disabled={pageNum === 1}
-          >
-            {"<"}
-          </PageNavButton>
-        )}
-
-        <Document
-          file={currentDocument.base64Data}
-          onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-          loading={<span>Loading...</span>}
-        >
-          <SinglePage pageNum={pageNum} />
-        </Document>
-
-        {numPages > 1 && (
-          <PageNavButton
-            onClick={() => setPageNum(pageNum + 1)}
-            disabled={pageNum >= numPages}
-          >
-            {">"}
-          </PageNavButton>
-        )}
+        <PDFPages />
       </Container>
-    );
-  } else {
-    return (
-      <Container>
-        <PDFControls />
-
-        <Document
-          file={currentDocument.base64Data}
-          onLoadSuccess={({ numPages }) => setNumPages(numPages)}
-          loading={<span>Loading...</span>}
-        >
-          <AllPages numPages={numPages} />
-        </Document>
-      </Container>
-    );
-  }
+    </PDFProvider>
+  );
 };
 
 export default PDFRenderer;
 
 const Container = styled.div`
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
   background-color: #eee;
   padding-bottom: 30px;
-`;
-
-const PageNavButton = styled.button`
-  flex: 1;
-  border: 0;
-  height: 100%;
-  font-size: 25px;
-  background-color: transparent;
-  outline: none;
-  box-shadow: none;
+  overflow: scroll;
 `;

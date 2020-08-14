@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { nextDocument, previousDocument } from "../state/actions";
-import { AppContext } from "../state/Context";
+import { nextDocument, previousDocument } from "../state/main/actions";
+import { AppContext } from "../state/main/Context";
 
 const DocumentNav: FC<{}> = () => {
   const {
@@ -9,7 +9,7 @@ const DocumentNav: FC<{}> = () => {
     dispatch,
   } = useContext(AppContext);
 
-  if (!documents.length || !currentDocument) return null;
+  if (documents.length <= 1 || !currentDocument) return null;
 
   let fileName = currentDocument.uri;
 
@@ -24,19 +24,19 @@ const DocumentNav: FC<{}> = () => {
         Document {currentFileNo + 1} of {documents.length}
       </span>
 
-      <Button
+      <ButtonPrev
         onClick={() => dispatch(previousDocument())}
         disabled={currentFileNo === 0}
       >
         {"<"}
-      </Button>
+      </ButtonPrev>
 
-      <button
+      <ButtonNext
         onClick={() => dispatch(nextDocument())}
         disabled={currentFileNo >= documents.length - 1}
       >
         {">"}
-      </button>
+      </ButtonNext>
     </Container>
   );
 };
@@ -46,9 +46,25 @@ export default DocumentNav;
 const Container = styled.div`
   flex-direction: row;
   margin: 0 10px;
-  color: #444;
+  color: #fff;
 `;
 
 const Button = styled.button`
-  margin: 0 10px 0 20px;
+  width: 25px;
+  /* height: 30px; */
+  border-radius: 40px;
+  /* font-size: 18px; */
+  background-color: #fff;
+  opacity: ${(props) => (props.disabled ? 0.4 : 1)};
+  color: #999;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  border: 0;
+  outline: none;
+`;
+const ButtonPrev = styled(Button)`
+  margin: 0 5px 0 10px;
+`;
+const ButtonNext = styled(Button)`
+  margin: 0 5px;
 `;

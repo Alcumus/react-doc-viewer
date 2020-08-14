@@ -5,20 +5,20 @@ import React, {
   useEffect,
   useReducer,
 } from "react";
-import { DocViewerProps } from "../DocViewer";
-import { MainState } from "../types";
+import { DocViewerProps } from "../../DocViewer";
 import { DocumentActions, setAllDocuments } from "./actions";
-import { initialConfig, initialState, reducer } from "./reducer";
+import { initialState, MainState, reducer } from "./reducer";
 
 const AppContext = createContext<{
   state: MainState;
   dispatch: Dispatch<DocumentActions>;
 }>({ state: initialState, dispatch: () => null });
 
-const AppProvider: FC<DocViewerProps> = ({ children, documents, config }) => {
+const AppProvider: FC<DocViewerProps> = ({ children, documents }) => {
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
-    config: config || initialConfig,
+    documents,
+    currentDocument: documents[0] || null,
   });
 
   // On inital load, and whenever they change,

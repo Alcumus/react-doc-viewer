@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "../state/Context";
+import { AppContext } from "../state/main/Context";
 
 const FileName: FC<{}> = () => {
   const {
@@ -24,7 +24,7 @@ export default FileName;
 const Container = styled.div`
   flex: 1;
   text-align: left;
-  color: #444;
+  color: #fff;
   font-weight: bold;
   margin: 0 10px;
 `;

@@ -2,12 +2,11 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import HeaderBar from "./components/HeaderBar";
 import ProxyRenderer from "./renderers/ProxyRenderer";
-import { AppProvider } from "./state/Context";
-import { DocViewerConfig, IDocument } from "./types";
+import { AppProvider } from "./state/main/Context";
+import { IDocument } from "./types";
 
 export interface DocViewerProps {
   documents: IDocument[];
-  config?: DocViewerConfig;
 }
 const DocViewer: FC<DocViewerProps> = (props) => {
   return (
