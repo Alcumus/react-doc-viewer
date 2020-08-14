@@ -1,6 +1,6 @@
 import React, { FC, useContext, useEffect } from "react";
 import { Document, Page } from "react-pdf";
-import styled, { ThemedStyledProps } from "styled-components";
+import styled from "styled-components";
 import { AppContext } from "../../state/main/Context";
 import { setCurrentPage, setNumPages } from "../../state/pdf/actions";
 import { PDFContext } from "../../state/pdf/Context";

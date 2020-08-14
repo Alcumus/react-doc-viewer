@@ -1,12 +1,10 @@
-import { DocRenderer, IDocument } from "../../types";
+import { IDocument } from "../../types";
 import {
   DocumentActions,
   NEXT_DOCUMENT,
   PREVIOUS_DOCUMENT,
   SetAllDocuments,
-  SetCurrentRenderer,
   SET_ALL_DOCUMENTS,
-  SET_CURRENT_RENDERER,
   UpdateCurrentDocument,
   UPDATE_CURRENT_DOCUMENT,
 } from "./actions";
@@ -15,14 +13,12 @@ export type MainState = {
   currentFileNo: number;
   documents: IDocument[];
   currentDocument?: IDocument;
-  CurrentRenderer?: DocRenderer;
 };
 
 export const initialState: MainState = {
   currentFileNo: 0,
   documents: [],
   currentDocument: undefined,
-  CurrentRenderer: undefined,
 };
 
 export const reducer = (
@@ -30,11 +26,6 @@ export const reducer = (
   action: DocumentActions
 ): MainState => {
   switch (action.type) {
-    case SET_CURRENT_RENDERER: {
-      const { renderer } = action as SetCurrentRenderer;
-      return { ...state, CurrentRenderer: renderer };
-    }
-
     case SET_ALL_DOCUMENTS: {
       const { documents } = action as SetAllDocuments;
       return { ...state, documents, currentDocument: documents[0] || null };

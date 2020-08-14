@@ -6,33 +6,31 @@ import { pdfjs } from "react-pdf";
 import styled from "styled-components";
 import { PDFProvider } from "../../state/pdf/Context";
 import { DocRenderer, FileType } from "../../types";
-import PDFControls from "./PDFControls";
 import PDFPages from "./PDFPages";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const docTypes: FileType[] = ["application/pdf"];
 
-const PDFRenderer: DocRenderer = () => {
+const PDFRenderer2: DocRenderer = () => {
   return (
     <PDFProvider>
       <Container>
-        <PDFControls />
         <PDFPages />
       </Container>
     </PDFProvider>
   );
 };
 
-PDFRenderer.priority = 1;
+PDFRenderer2.priority = 2;
 
 events.on("request-document-renderer", (_, payload, something) => {
   if (docTypes.indexOf(payload.fileType) >= 0) {
-    something.push(PDFRenderer);
+    something.push(PDFRenderer2);
   }
 });
 
-export default PDFRenderer;
+export default PDFRenderer2;
 
 const Container = styled.div`
   background-color: #eee;

@@ -1,8 +1,12 @@
-import React, { FC, useContext } from "react";
+import events from "alcumus-local-events";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../../state/main/Context";
+import { DocRenderer, FileType } from "../../types";
 
-const PNGRenderer: FC<{}> = () => {
+const docTypes: FileType[] = ["image/png"];
+
+const PNGRenderer: DocRenderer = () => {
   const {
     state: { currentDocument },
   } = useContext(AppContext);
@@ -17,6 +21,14 @@ const PNGRenderer: FC<{}> = () => {
 };
 
 export default PNGRenderer;
+
+PNGRenderer.priority = 1;
+
+events.on("request-document-renderer", (_, payload, something) => {
+  if (docTypes.indexOf(payload.fileType) >= 0) {
+    something.push(PNGRenderer);
+  }
+});
 
 const Container = styled.div`
   display: flex;
