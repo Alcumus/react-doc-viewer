@@ -33,6 +33,7 @@ events.on("request-document-renderer", (_, payload, something) => {
 export default PDFRenderer2;
 
 const Container = styled.div`
+  height: 100%;
   background-color: #eee;
   padding-bottom: 30px;
   overflow: scroll;
