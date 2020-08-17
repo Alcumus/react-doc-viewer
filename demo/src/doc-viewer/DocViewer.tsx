@@ -10,12 +10,12 @@ export interface DocViewerProps {
 }
 const DocViewer: FC<DocViewerProps> = (props) => {
   return (
-    <Container>
-      <AppProvider {...props}>
+    <AppProvider {...props}>
+      <Container>
         <HeaderBar />
         <ProxyRenderer />
-      </AppProvider>
-    </Container>
+      </Container>
+    </AppProvider>
   );
 };
 
@@ -24,6 +24,4 @@ export default DocViewer;
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  height: 100%;
-  overflow: hidden;
 `;

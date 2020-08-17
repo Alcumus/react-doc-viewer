@@ -56,7 +56,7 @@ export const SinglePage: FC<PDFPageProps> = (props) => {
   } = useContext(PDFContext);
 
   return (
-    <PageWrapper>
+    <PageWrapper last={pageNum >= numPages}>
       {paginated && numPages > 1 && (
         <>
           <PageNavButtonLeft
@@ -82,7 +82,7 @@ export const SinglePage: FC<PDFPageProps> = (props) => {
         pageNumber={pageNum || currentPage}
         scale={zoomLevel}
         height={rendererRect?.height - 100}
-        width={rendererRect?.width - 50}
+        width={rendererRect?.width - 100}
       />
     </PageWrapper>
   );
@@ -101,9 +101,12 @@ export const AllPages: FC<PDFPageProps> = (props) => {
   return <>{PagesArray}</>;
 };
 
-const PageWrapper = styled.div`
-  margin-top: 30px;
-  margin-bottom: 80px;
+interface PageWrapperProps {
+  last?: boolean;
+}
+const PageWrapper = styled.div<PageWrapperProps>`
+  margin: 30px 0;
+  /* margin-bottom: ${(props) => (props.last ? 80 : 0)}px; */
 `;
 const PageTag = styled.div`
   padding: 0 0 10px 10px;

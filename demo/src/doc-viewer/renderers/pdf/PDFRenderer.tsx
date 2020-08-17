@@ -35,7 +35,7 @@ events.on("request-document-renderer", (ev, payload, something) => {
 export default PDFRenderer;
 
 const Container = styled.div`
-  height: 100%;
+  flex: 1;
   background-color: #eee;
   overflow: auto;
 `;
