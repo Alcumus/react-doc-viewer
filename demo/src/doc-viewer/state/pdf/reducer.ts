@@ -11,8 +11,6 @@ import {
 } from "./actions";
 
 export type PDFState = {
-  minZoom: number;
-  maxZoom: number;
   zoomLevel: number;
   paginated: boolean;
   numPages: number;
@@ -20,8 +18,6 @@ export type PDFState = {
 };
 
 export const initialPDFState: PDFState = {
-  minZoom: 0.2,
-  maxZoom: 2,
   zoomLevel: 1,
   paginated: false,
   numPages: 0,
@@ -36,12 +32,7 @@ export const reducer = (
     case SET_ZOOM_LEVEL: {
       const { value } = action as SetZoomLevel;
 
-      const newZoom =
-        (value >= state.maxZoom && state.maxZoom) ||
-        (value <= state.minZoom && state.minZoom) ||
-        value;
-
-      return { ...state, zoomLevel: newZoom };
+      return { ...state, zoomLevel: value };
     }
 
     case SET_PDF_PAGINATED: {

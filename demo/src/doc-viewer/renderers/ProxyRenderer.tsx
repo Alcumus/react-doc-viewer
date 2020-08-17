@@ -1,26 +1,33 @@
-import React, { FC } from "react";
-import { useDocumentLoader } from "../utils";
-import PDFRenderer from "./pdf/PDFRenderer";
-import PNGRenderer from "./png/PNGRenderer";
-import JPGRenderer from "./jpg/JPGRenderer";
+import React, { FC, useCallback, useContext } from "react";
+import styled from "styled-components";
+import { setRendererRect } from "../state/main/actions";
+import { MainContext } from "../state/main/Context";
+import useDocumentLoader from "../utils/useDocumentLoader";
+import useWindowSize from "../utils/useWindowSize";
 
 const ProxyRenderer: FC<{}> = () => {
-  const { currentDocument, CurrentRenderer } = useDocumentLoader();
+  const { CurrentRenderer } = useDocumentLoader();
+  const size = useWindowSize();
 
-  // if (!CurrentRenderer) return null;
-  // return <CurrentRenderer />;
+  const { dispatch } = useContext(MainContext);
 
-  switch (currentDocument?.fileType) {
-    case "application/pdf":
-      return <PDFRenderer />;
-    case "image/png":
-      return <PNGRenderer />;
-    case "image/jpg":
-    case "image/jpeg":
-      return <JPGRenderer />;
-    default:
-      return null;
-  }
+  const containerRef = useCallback(
+    (node) => node && dispatch(setRendererRect(node?.getBoundingClientRect())),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [size, dispatch]
+  );
+
+  if (!CurrentRenderer) return null;
+  return (
+    <Container ref={containerRef}>
+      <CurrentRenderer />
+    </Container>
+  );
 };
 
 export default ProxyRenderer;
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+`;

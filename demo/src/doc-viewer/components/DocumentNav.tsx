@@ -1,13 +1,13 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { nextDocument, previousDocument } from "../state/main/actions";
-import { AppContext } from "../state/main/Context";
+import { MainContext } from "../state/main/Context";
 
 const DocumentNav: FC<{}> = () => {
   const {
     state: { currentFileNo, documents, currentDocument },
     dispatch,
-  } = useContext(AppContext);
+  } = useContext(MainContext);
 
   if (documents.length <= 1 || !currentDocument) return null;
 

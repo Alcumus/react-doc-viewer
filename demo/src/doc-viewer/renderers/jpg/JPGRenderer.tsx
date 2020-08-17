@@ -1,11 +1,14 @@
-import React, { FC, useContext } from "react";
+import events from "alcumus-local-events";
+import React, { useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "../../state/main/Context";
+import { MainContext } from "../../state/main/Context";
+import { DocRenderer, FileType } from "../../types";
 
-const JPGRenderer: FC<{}> = () => {
+const docTypes: FileType[] = ["image/jpg", "image/jpeg"];
+const JPGRenderer: DocRenderer = () => {
   const {
     state: { currentDocument },
-  } = useContext(AppContext);
+  } = useContext(MainContext);
 
   if (!currentDocument) return null;
 
@@ -18,11 +21,20 @@ const JPGRenderer: FC<{}> = () => {
 
 export default JPGRenderer;
 
+JPGRenderer.priority = 1;
+
+events.on("request-document-renderer", (ev, payload, something) => {
+  if (docTypes.indexOf(payload.fileType) >= 0) {
+    something.push(JPGRenderer);
+  }
+});
+
 const Container = styled.div`
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: center;
+  height: 100%;
   background-color: #fff;
 `;
 

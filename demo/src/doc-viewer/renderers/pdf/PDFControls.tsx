@@ -14,23 +14,17 @@ import { initialPDFState } from "../../state/pdf/reducer";
 
 const PDFControls: FC<{}> = () => {
   const {
-    state: { paginated, zoomLevel, minZoom, maxZoom },
+    state: { paginated, zoomLevel, numPages },
     dispatch,
   } = useContext(PDFContext);
 
   return (
     <Container>
-      <IconButton
-        onMouseDown={() => dispatch(setZoomLevel(zoomLevel - 0.1))}
-        disabled={zoomLevel <= minZoom}
-      >
+      <IconButton onMouseDown={() => dispatch(setZoomLevel(zoomLevel - 0.1))}>
         <FontAwesomeIcon icon={faSearchMinus} />
       </IconButton>
 
-      <IconButton
-        onMouseDown={() => dispatch(setZoomLevel(zoomLevel + 0.1))}
-        disabled={zoomLevel >= maxZoom}
-      >
+      <IconButton onMouseDown={() => dispatch(setZoomLevel(zoomLevel + 0.1))}>
         <FontAwesomeIcon icon={faSearchPlus} />
       </IconButton>
 
@@ -41,9 +35,11 @@ const PDFControls: FC<{}> = () => {
         <FontAwesomeIcon icon={faExpand} />
       </IconButton>
 
-      <IconButton onMouseDown={() => dispatch(setPDFPaginated(!paginated))}>
-        <FontAwesomeIcon icon={paginated ? faArrowsAltV : faArrowsAltH} />
-      </IconButton>
+      {numPages > 1 && (
+        <IconButton onMouseDown={() => dispatch(setPDFPaginated(!paginated))}>
+          <FontAwesomeIcon icon={paginated ? faArrowsAltV : faArrowsAltH} />
+        </IconButton>
+      )}
     </Container>
   );
 };
@@ -56,7 +52,7 @@ const Container = styled.div`
   position: fixed;
   z-index: 1;
   bottom: 20px;
-  right: 20px;
+  right: 25px;
 
   @media (max-width: 768px) {
     bottom: 12px;

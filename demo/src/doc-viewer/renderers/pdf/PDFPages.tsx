@@ -1,15 +1,14 @@
 import React, { FC, useContext, useEffect } from "react";
 import { Document, Page } from "react-pdf";
-import styled, { ThemedStyledProps } from "styled-components";
-import { AppContext } from "../../state/main/Context";
+import styled from "styled-components";
+import { MainContext } from "../../state/main/Context";
 import { setCurrentPage, setNumPages } from "../../state/pdf/actions";
 import { PDFContext } from "../../state/pdf/Context";
-// import { useWindowSize } from "../../utils";
 
 const PDFPages: FC<{}> = () => {
   const {
     state: { currentDocument },
-  } = useContext(AppContext);
+  } = useContext(MainContext);
 
   const {
     state: { paginated },
@@ -20,7 +19,7 @@ const PDFPages: FC<{}> = () => {
     dispatch(setNumPages(0));
   }, [currentDocument, dispatch]);
 
-  if (!currentDocument) return null;
+  if (!currentDocument || currentDocument.base64Data === undefined) return null;
 
   return (
     <DocumentPDF
@@ -48,13 +47,9 @@ interface PDFPageProps {
 export const SinglePage: FC<PDFPageProps> = (props) => {
   const { pageNum } = props;
 
-  // const size = useWindowSize();
-  // console.log(size);
-
-  // useEffect(() => {
-  //  if()
-  // }, size)
-
+  const {
+    state: { rendererRect },
+  } = useContext(MainContext);
   const {
     state: { paginated, zoomLevel, numPages, currentPage },
     dispatch,
@@ -83,7 +78,12 @@ export const SinglePage: FC<PDFPageProps> = (props) => {
       <PageTag>
         Page {pageNum || currentPage}/{numPages}
       </PageTag>
-      <Page pageNumber={pageNum || currentPage} scale={zoomLevel} />
+      <Page
+        pageNumber={pageNum || currentPage}
+        scale={zoomLevel}
+        height={rendererRect?.height - 100}
+        width={rendererRect?.width - 50}
+      />
     </PageWrapper>
   );
 };
@@ -103,11 +103,12 @@ export const AllPages: FC<PDFPageProps> = (props) => {
 
 const PageWrapper = styled.div`
   margin-top: 30px;
+  margin-bottom: 80px;
 `;
 const PageTag = styled.div`
   padding: 0 0 10px 10px;
   color: #888;
-  font-size: 18px;
+  font-size: 14px;
 
   @media (max-width: 768px) {
     font-size: 10px;

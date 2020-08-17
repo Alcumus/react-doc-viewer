@@ -1,6 +1,4 @@
-import JPGRenderer from "../renderers/jpg/JPGRenderer";
-import PDFRenderer from "../renderers/pdf/PDFRenderer";
-import PNGRenderer from "../renderers/png/PNGRenderer";
+import { FC } from "react";
 
 export type FileType =
   | "application/pdf"
@@ -14,7 +12,6 @@ export interface IDocument {
   base64Data?: string;
 }
 
-export type DocRenderer =
-  | typeof PDFRenderer
-  | typeof PNGRenderer
-  | typeof JPGRenderer;
+export interface DocRenderer extends FC<{}> {
+  priority: number;
+}
