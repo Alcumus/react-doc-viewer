@@ -26,7 +26,7 @@ const PDFRenderer: DocRenderer = () => {
 
 PDFRenderer.priority = 1;
 
-events.on("request-document-renderer", (_, payload, something) => {
+events.on("request-document-renderer", (ev, payload, something) => {
   if (docTypes.indexOf(payload.fileType) >= 0) {
     something.push(PDFRenderer);
   }
@@ -37,6 +37,5 @@ export default PDFRenderer;
 const Container = styled.div`
   height: 100%;
   background-color: #eee;
-  padding-bottom: 30px;
-  overflow: scroll;
+  overflow: auto;
 `;

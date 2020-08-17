@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { updateCurrentDocument } from "../state/main/actions";
-import { AppContext } from "../state/main/Context";
+import { MainContext } from "../state/main/Context";
 import { DocRenderer, FileType, IDocument } from "../types";
 import useRendererSelector from "./useRendererSelector";
 
@@ -14,7 +14,7 @@ const useDocumentLoader = (): {
   const {
     state: { currentDocument },
     dispatch,
-  } = useContext(AppContext);
+  } = useContext(MainContext);
 
   const { CurrentRenderer } = useRendererSelector();
 
@@ -25,20 +25,20 @@ const useDocumentLoader = (): {
       if (!currentDocument) return;
 
       Promise.resolve().then(async () => {
-        const res = await fetch(currentDocument.uri);
+        const res = await fetch(documentURI);
         const blob = await res.blob();
 
-        var reader = new FileReader();
-        reader.onloadend = () => {
+        const fileReader = new FileReader();
+        fileReader.addEventListener("loadend", () => {
           dispatch(
             updateCurrentDocument({
               ...currentDocument,
-              base64Data: reader.result as string,
+              base64Data: fileReader.result as string,
               fileType: blob.type as FileType,
             })
           );
-        };
-        reader.readAsDataURL(blob);
+        });
+        fileReader.readAsDataURL(blob);
       });
     },
     // eslint ignore added, because a warning appears for dispatch to

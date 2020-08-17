@@ -37,8 +37,20 @@ export const updateCurrentDocument = (
   document: IDocument
 ): UpdateCurrentDocument => ({ type: UPDATE_CURRENT_DOCUMENT, document });
 
+// SET_RENDERER_RECT
+export const SET_RENDERER_RECT: string = "SET_RENDERER_RECT";
+export interface SetRendererRect {
+  type: typeof SET_RENDERER_RECT;
+  rect: DOMRect;
+}
+export const setRendererRect = (rect: DOMRect): SetRendererRect => ({
+  type: SET_RENDERER_RECT,
+  rect,
+});
+
 export type DocumentActions =
   | SetAllDocuments
   | NextDocument
   | PreviousDocument
-  | UpdateCurrentDocument;
+  | UpdateCurrentDocument
+  | SetRendererRect;

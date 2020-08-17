@@ -1,11 +1,11 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "../state/main/Context";
+import { MainContext } from "../state/main/Context";
 
 const FileName: FC<{}> = () => {
   const {
     state: { currentDocument },
-  } = useContext(AppContext);
+  } = useContext(MainContext);
 
   if (!currentDocument) return null;
 

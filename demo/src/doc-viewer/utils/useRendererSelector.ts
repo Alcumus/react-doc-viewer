@@ -1,7 +1,7 @@
 import events from "alcumus-local-events";
 import { useContext, useEffect, useState } from "react";
 import "../plugins";
-import { AppContext } from "../state/main/Context";
+import { MainContext } from "../state/main/Context";
 import { DocRenderer } from "../types";
 
 /**
@@ -12,7 +12,7 @@ const useRendererSelector = (): {
 } => {
   const {
     state: { currentDocument },
-  } = useContext(AppContext);
+  } = useContext(MainContext);
 
   const [CurrentRenderer, setCurrentRenderer] = useState<DocRenderer>(null);
 

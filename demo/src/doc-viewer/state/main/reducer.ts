@@ -7,18 +7,22 @@ import {
   SET_ALL_DOCUMENTS,
   UpdateCurrentDocument,
   UPDATE_CURRENT_DOCUMENT,
+  SET_RENDERER_RECT,
+  SetRendererRect,
 } from "./actions";
 
 export type MainState = {
   currentFileNo: number;
   documents: IDocument[];
   currentDocument?: IDocument;
+  rendererRect?: DOMRect;
 };
 
 export const initialState: MainState = {
   currentFileNo: 0,
   documents: [],
   currentDocument: undefined,
+  rendererRect: undefined,
 };
 
 export const reducer = (
@@ -54,6 +58,14 @@ export const reducer = (
       return {
         ...state,
         currentDocument: document,
+      };
+    }
+
+    case SET_RENDERER_RECT: {
+      const { rect } = action as SetRendererRect;
+      return {
+        ...state,
+        rendererRect: rect,
       };
     }
 
