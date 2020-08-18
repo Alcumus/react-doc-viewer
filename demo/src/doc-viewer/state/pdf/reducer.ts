@@ -19,7 +19,7 @@ export type PDFState = {
 
 export const initialPDFState: PDFState = {
   zoomLevel: 1,
-  paginated: false,
+  paginated: true,
   numPages: 0,
   currentPage: 1,
 };

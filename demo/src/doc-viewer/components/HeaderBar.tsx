@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import DocumentNav from "./DocumentNav";
 import FileName from "./FileName";
+import { IStyledProps } from "../types";
 
 const HeaderBar: FC<{}> = () => {
   return (
@@ -17,11 +18,9 @@ export default HeaderBar;
 const Container = styled.div`
   display: flex;
   align-items: center;
-  position: sticky;
-  top: 0;
   z-index: 1;
   padding: 0 10px;
-  background-color: #5296d8;
+  background-color: ${(props: IStyledProps) => props.theme.primary};
   font-size: 16px;
   min-height: 50px;
 

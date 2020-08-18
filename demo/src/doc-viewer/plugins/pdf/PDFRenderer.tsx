@@ -3,7 +3,6 @@ import events from "alcumus-local-events";
 import * as pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
 import React from "react";
 import { pdfjs } from "react-pdf";
-import styled from "styled-components";
 import { PDFProvider } from "../../state/pdf/Context";
 import { DocRenderer, FileType } from "../../types";
 import PDFControls from "./PDFControls";
@@ -16,10 +15,8 @@ const docTypes: FileType[] = ["application/pdf"];
 const PDFRenderer: DocRenderer = () => {
   return (
     <PDFProvider>
-      <Container>
-        <PDFControls />
-        <PDFPages />
-      </Container>
+      <PDFControls />
+      <PDFPages />
     </PDFProvider>
   );
 };
@@ -33,9 +30,3 @@ events.on("request-document-renderer", (ev, payload, something) => {
 });
 
 export default PDFRenderer;
-
-const Container = styled.div`
-  flex: 1;
-  background-color: #eee;
-  overflow: auto;
-`;

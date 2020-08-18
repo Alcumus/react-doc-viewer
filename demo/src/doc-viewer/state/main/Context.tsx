@@ -14,7 +14,9 @@ const MainContext = createContext<{
   dispatch: Dispatch<DocumentActions>;
 }>({ state: initialState, dispatch: () => null });
 
-const AppProvider: FC<DocViewerProps> = ({ children, documents }) => {
+const AppProvider: FC<DocViewerProps> = (props) => {
+  const { children, documents } = props;
+
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     documents,

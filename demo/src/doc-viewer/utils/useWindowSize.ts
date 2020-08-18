@@ -27,6 +27,9 @@ const useWindowSize = () => {
 
     // Call handler right away so state gets updated with initial window size
     handleResize();
+    // setTimeout(() => {
+    //   handleResize();
+    // }, 500);
 
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
