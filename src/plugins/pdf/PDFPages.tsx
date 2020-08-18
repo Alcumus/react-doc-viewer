@@ -93,6 +93,7 @@ const PageTag = styled.div`
   padding: 0 0 10px 10px;
   color: ${(props: IStyledProps) => props.theme.text_tertiary};
   font-size: 14px;
+  text-align: left;
 
   @media (max-width: 768px) {
     font-size: 10px;
