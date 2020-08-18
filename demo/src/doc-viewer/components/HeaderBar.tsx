@@ -10,7 +10,7 @@ const HeaderBar: FC<{}> = () => {
     state: { config },
   } = useContext(MainContext);
 
-  if (config.disableHeader) return null;
+  if (config?.disableHeader) return null;
 
   return (
     <Container>
