@@ -1,16 +1,16 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { AppContext } from "../state/main/Context";
+import { MainContext } from "../state/main/Context";
+import { IStyledProps } from "../types";
 
 const FileName: FC<{}> = () => {
   const {
     state: { currentDocument },
-  } = useContext(AppContext);
+  } = useContext(MainContext);
 
   if (!currentDocument) return null;
 
   let fileName = currentDocument.uri;
-
   const splitURL = fileName.split("/");
   if (splitURL.length) {
     fileName = splitURL[splitURL.length - 1];
@@ -24,7 +24,7 @@ export default FileName;
 const Container = styled.div`
   flex: 1;
   text-align: left;
-  color: #fff;
+  color: ${(props: IStyledProps) => props.theme.text_primary};
   font-weight: bold;
   margin: 0 10px;
 `;

@@ -1,13 +1,14 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { nextDocument, previousDocument } from "../state/main/actions";
-import { AppContext } from "../state/main/Context";
+import { MainContext } from "../state/main/Context";
+import { IStyledProps } from "../types";
 
 const DocumentNav: FC<{}> = () => {
   const {
     state: { currentFileNo, documents, currentDocument },
     dispatch,
-  } = useContext(AppContext);
+  } = useContext(MainContext);
 
   if (documents.length <= 1 || !currentDocument) return null;
 
@@ -21,7 +22,7 @@ const DocumentNav: FC<{}> = () => {
   return (
     <Container>
       <span>
-        Document {currentFileNo + 1} of {documents.length}
+        Doc {currentFileNo + 1} of {documents.length}
       </span>
 
       <ButtonPrev
@@ -46,19 +47,18 @@ export default DocumentNav;
 const Container = styled.div`
   flex-direction: row;
   margin: 0 10px;
-  color: #fff;
+  color: ${(props: IStyledProps) => props.theme.text_primary};
 `;
 
 const Button = styled.button`
   width: 25px;
-  /* height: 30px; */
+  height: 25px;
   border-radius: 40px;
-  /* font-size: 18px; */
-  background-color: #fff;
+  background-color: ${(props: IStyledProps) => props.theme.secondary};
   opacity: ${(props) => (props.disabled ? 0.4 : 1)};
-  color: #999;
+  color: ${(props: IStyledProps) => props.theme.text_secondary};
   text-align: center;
-  box-shadow: 2px 2px 3px #999;
+  box-shadow: 2px 2px 3px #00000033;
   border: 0;
   outline: none;
 `;

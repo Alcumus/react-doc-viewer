@@ -9,16 +9,19 @@ import { DocViewerProps } from "../../DocViewer";
 import { DocumentActions, setAllDocuments } from "./actions";
 import { initialState, MainState, reducer } from "./reducer";
 
-const AppContext = createContext<{
+const MainContext = createContext<{
   state: MainState;
   dispatch: Dispatch<DocumentActions>;
 }>({ state: initialState, dispatch: () => null });
 
-const AppProvider: FC<DocViewerProps> = ({ children, documents }) => {
+const AppProvider: FC<DocViewerProps> = (props) => {
+  const { children, documents, config } = props;
+
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
-    documents,
-    currentDocument: documents[0] || null,
+    documents: documents || [],
+    currentDocument: documents && documents.length ? documents[0] : null,
+    config,
   });
 
   // On inital load, and whenever they change,
@@ -28,10 +31,10 @@ const AppProvider: FC<DocViewerProps> = ({ children, documents }) => {
   }, [documents]);
 
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
+    <MainContext.Provider value={{ state, dispatch }}>
       {children}
-    </AppContext.Provider>
+    </MainContext.Provider>
   );
 };
 
-export { AppContext, AppProvider };
+export { MainContext, AppProvider };
