@@ -19,8 +19,8 @@ const AppProvider: FC<DocViewerProps> = (props) => {
 
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
-    documents,
-    currentDocument: documents[0] || null,
+    documents: documents || [],
+    currentDocument: documents && documents.length ? documents[0] : null,
     config,
   });
 

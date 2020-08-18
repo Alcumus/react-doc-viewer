@@ -17,6 +17,16 @@ export interface DocViewerProps {
 
 // const DocViewer: FC<DocViewerProps> = (props) => {
 const DocViewer = (props: DocViewerProps) => {
+  if (
+    !props.documents ||
+    props.documents === undefined ||
+    !props.documents.length
+  ) {
+    throw new Error(
+      "Please provide an array of documents to DocViewer.\ne.g. <DocViewer documents={[ 'https://mypdf.pdf' ]} />"
+    );
+  }
+
   return (
     <AppProvider {...props}>
       <ThemeProvider
