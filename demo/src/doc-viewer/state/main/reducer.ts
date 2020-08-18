@@ -1,4 +1,4 @@
-import { IDocument } from "../../types";
+import { IDocument, IConfig } from "../../types";
 import {
   DocumentActions,
   NEXT_DOCUMENT,
@@ -9,6 +9,8 @@ import {
   UPDATE_CURRENT_DOCUMENT,
   SET_RENDERER_RECT,
   SetRendererRect,
+  SET_MAIN_CONFIG,
+  SetMainConfig,
 } from "./actions";
 
 export type MainState = {
@@ -16,6 +18,7 @@ export type MainState = {
   documents: IDocument[];
   currentDocument?: IDocument;
   rendererRect?: DOMRect;
+  config?: IConfig;
 };
 
 export const initialState: MainState = {
@@ -23,6 +26,7 @@ export const initialState: MainState = {
   documents: [],
   currentDocument: undefined,
   rendererRect: undefined,
+  config: {},
 };
 
 export const reducer = (
@@ -66,6 +70,14 @@ export const reducer = (
       return {
         ...state,
         rendererRect: rect,
+      };
+    }
+
+    case SET_MAIN_CONFIG: {
+      const { config } = action as SetMainConfig;
+      return {
+        ...state,
+        config,
       };
     }
 

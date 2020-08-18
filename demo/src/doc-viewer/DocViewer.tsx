@@ -5,13 +5,14 @@ import "./plugins";
 import ProxyRenderer from "./ProxyRenderer";
 import { AppProvider } from "./state/main/Context";
 import { defaultTheme } from "./theme";
-import { IConfig, IDocument } from "./types";
+import { IConfig, IDocument, ITheme } from "./types";
 
 export interface DocViewerProps {
   documents: IDocument[];
   className?: string;
   style?: CSSProperties;
   config?: IConfig;
+  theme?: ITheme;
 }
 
 // const DocViewer: FC<DocViewerProps> = (props) => {
@@ -19,7 +20,7 @@ const DocViewer = (props: DocViewerProps) => {
   return (
     <AppProvider {...props}>
       <ThemeProvider
-        theme={{ ...defaultTheme, ...(props.config?.theme || {}) }}
+        theme={props.theme ? { ...defaultTheme, ...props.theme } : defaultTheme}
       >
         <Container {...props}>
           <HeaderBar />

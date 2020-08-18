@@ -36,8 +36,9 @@ const Container = styled.div`
 
   /* width */
   &::-webkit-scrollbar {
-    width: ${(props: IStyledProps) =>
-      props.theme.disableThemeScrollbar ? "" : "10px"};
+    ${(props: IStyledProps) => {
+      return props.theme.disableThemeScrollbar ? "" : "width: 10px";
+    }};
   }
   /* Track */
   &::-webkit-scrollbar-track {

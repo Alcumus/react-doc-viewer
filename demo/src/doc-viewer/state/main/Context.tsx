@@ -15,12 +15,13 @@ const MainContext = createContext<{
 }>({ state: initialState, dispatch: () => null });
 
 const AppProvider: FC<DocViewerProps> = (props) => {
-  const { children, documents } = props;
+  const { children, documents, config } = props;
 
   const [state, dispatch] = useReducer(reducer, {
     ...initialState,
     documents,
     currentDocument: documents[0] || null,
+    config,
   });
 
   // On inital load, and whenever they change,

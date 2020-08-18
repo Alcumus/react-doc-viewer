@@ -7,4 +7,5 @@ export const defaultTheme: ITheme = {
   text_primary: "#000",
   text_secondary: "#fff",
   text_tertiary: "#00000044",
+  disableThemeScrollbar: false,
 };

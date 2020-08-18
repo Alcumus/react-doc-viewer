@@ -1,10 +1,17 @@
-import React, { FC } from "react";
+import React, { FC, useContext } from "react";
 import styled from "styled-components";
+import { MainContext } from "../state/main/Context";
+import { IStyledProps } from "../types";
 import DocumentNav from "./DocumentNav";
 import FileName from "./FileName";
-import { IStyledProps } from "../types";
 
 const HeaderBar: FC<{}> = () => {
+  const {
+    state: { config },
+  } = useContext(MainContext);
+
+  if (config.disableHeader) return null;
+
   return (
     <Container>
       <FileName />

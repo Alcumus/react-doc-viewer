@@ -20,16 +20,17 @@ function App() {
           { uri: "https://dummyimage.com/300" },
           { uri: "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg" },
         ]}
+        theme={{
+          primary: "#5296d8",
+          secondary: "#ffffff",
+          tertiary: "#5296d899",
+          text_primary: "#ffffff",
+          text_secondary: "#5296d8",
+          text_tertiary: "#00000099",
+          disableThemeScrollbar: false,
+        }}
         config={{
-          theme: {
-            primary: "#5296d8",
-            secondary: "#ffffff",
-            tertiary: "#5296d899",
-            text_primary: "#ffffff",
-            text_secondary: "#5296d8",
-            text_tertiary: "#00000099",
-            disableThemeScrollbar: false,
-          },
+          disableHeader: false,
         }}
       />
     </div>

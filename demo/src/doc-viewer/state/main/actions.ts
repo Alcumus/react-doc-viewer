@@ -1,4 +1,4 @@
-import { IDocument } from "../../types";
+import { IConfig, IDocument } from "../../types";
 
 // SET_DOCUMENTS
 export const SET_ALL_DOCUMENTS: string = "SET_ALL_DOCUMENTS";
@@ -48,9 +48,21 @@ export const setRendererRect = (rect: DOMRect): SetRendererRect => ({
   rect,
 });
 
+// SET_MAIN_CONFIG
+export const SET_MAIN_CONFIG: string = "SET_MAIN_CONFIG";
+export interface SetMainConfig {
+  type: typeof SET_MAIN_CONFIG;
+  config: IConfig;
+}
+export const setMainConfig = (config: IConfig): SetMainConfig => ({
+  type: SET_MAIN_CONFIG,
+  config,
+});
+
 export type DocumentActions =
   | SetAllDocuments
   | NextDocument
   | PreviousDocument
   | UpdateCurrentDocument
-  | SetRendererRect;
+  | SetRendererRect
+  | SetMainConfig;
