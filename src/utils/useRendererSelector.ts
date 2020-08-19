@@ -7,17 +7,17 @@ import { DocRenderer } from "../types";
  * Custom Hook for loading the current document into context
  */
 const useRendererSelector = (): {
-  CurrentRenderer: DocRenderer;
+  CurrentRenderer: DocRenderer | undefined;
 } => {
   const {
     state: { currentDocument },
   } = useContext(MainContext);
 
-  const [CurrentRenderer, setCurrentRenderer] = useState<DocRenderer>(null);
+  const [CurrentRenderer, setCurrentRenderer] = useState<DocRenderer>();
 
   useEffect(() => {
     Promise.resolve().then(async () => {
-      const respondingRenderers = [];
+      const respondingRenderers: DocRenderer[] = [];
 
       // Emit async event, to populate respondingRenderers array
       await events.emitAsync(
@@ -34,7 +34,7 @@ const useRendererSelector = (): {
       if (SelectedRenderer && SelectedRenderer !== undefined) {
         setCurrentRenderer(() => SelectedRenderer);
       } else {
-        setCurrentRenderer(null);
+        setCurrentRenderer(undefined);
       }
     });
   }, [currentDocument]);

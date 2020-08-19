@@ -1,5 +1,5 @@
-// @ts-ignore
 import events from "alcumus-local-events";
+// @ts-ignore
 import * as pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
 import React from "react";
 import { pdfjs } from "react-pdf";
@@ -23,10 +23,13 @@ const PDFRenderer: DocRenderer = () => {
 
 PDFRenderer.priority = 1;
 
-events.on("request-document-renderer", (ev, payload, something) => {
-  if (docTypes.indexOf(payload.fileType) >= 0) {
-    something.push(PDFRenderer);
+events.on(
+  "request-document-renderer",
+  (_ev: any, payload: { fileType: FileType }, something: DocRenderer[]) => {
+    if (docTypes.indexOf(payload.fileType) >= 0) {
+      something.push(PDFRenderer);
+    }
   }
-});
+);
 
 export default PDFRenderer;

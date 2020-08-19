@@ -1,6 +1,6 @@
 import React, { createContext, Dispatch, FC, useReducer } from "react";
 import { PDFActions } from "./actions";
-import { initialPDFState, PDFState, reducer } from "./reducer";
+import { initialPDFState, PDFState, PDFStateReducer, reducer } from "./reducer";
 
 const PDFContext = createContext<{
   state: PDFState;
@@ -8,7 +8,10 @@ const PDFContext = createContext<{
 }>({ state: initialPDFState, dispatch: () => null });
 
 const PDFProvider: FC<{}> = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, initialPDFState);
+  const [state, dispatch] = useReducer<PDFStateReducer>(
+    reducer,
+    initialPDFState
+  );
 
   return (
     <PDFContext.Provider value={{ state, dispatch }}>

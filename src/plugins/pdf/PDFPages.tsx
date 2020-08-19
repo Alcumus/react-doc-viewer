@@ -55,16 +55,18 @@ export const SinglePage: FC<PDFPageProps> = (props) => {
     state: { zoomLevel, numPages, currentPage },
   } = useContext(PDFContext);
 
+  const _pageNum = pageNum || currentPage;
+
   return (
-    <PageWrapper last={pageNum >= numPages}>
+    <PageWrapper last={_pageNum >= numPages}>
       <PageTag>
-        Page {pageNum || currentPage}/{numPages}
+        Page {_pageNum}/{numPages}
       </PageTag>
       <Page
-        pageNumber={pageNum || currentPage}
+        pageNumber={_pageNum || currentPage}
         scale={zoomLevel}
-        height={rendererRect?.height - 100}
-        width={rendererRect?.width - 100}
+        height={(rendererRect?.height || 100) - 100}
+        width={(rendererRect?.width || 100) - 100}
       />
     </PageWrapper>
   );
