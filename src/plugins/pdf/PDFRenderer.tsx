@@ -3,10 +3,10 @@ import events from "alcumus-local-events";
 import * as pdfjsWorker from "pdfjs-dist/build/pdf.worker.entry";
 import React from "react";
 import { pdfjs } from "react-pdf";
-import { PDFProvider } from "../../state/pdf/Context";
 import { DocRenderer, FileType } from "../../types";
-import PDFControls from "./PDFControls";
-import PDFPages from "./PDFPages";
+import PDFControls from "./components/PDFControls";
+import PDFPages from "./components/PDFPages";
+import { PDFProvider } from "./state/Context";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 

@@ -1,6 +1,6 @@
 import React from "react";
-import { DocViewer } from "./doc-viewer";
 import styled from "styled-components";
+import DocViewer from "./doc-viewer";
 
 function App() {
   return (

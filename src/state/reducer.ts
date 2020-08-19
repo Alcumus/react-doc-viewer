@@ -1,16 +1,16 @@
-import { IDocument, IConfig } from "../../types";
+import { IConfig, IDocument } from "../types";
 import {
   MainStateActions,
   NEXT_DOCUMENT,
   PREVIOUS_DOCUMENT,
   SetAllDocuments,
+  SetMainConfig,
+  SetRendererRect,
   SET_ALL_DOCUMENTS,
+  SET_MAIN_CONFIG,
+  SET_RENDERER_RECT,
   UpdateCurrentDocument,
   UPDATE_CURRENT_DOCUMENT,
-  SET_RENDERER_RECT,
-  SetRendererRect,
-  SET_MAIN_CONFIG,
-  SetMainConfig,
 } from "./actions";
 
 export type MainState = {

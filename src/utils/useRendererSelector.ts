@@ -1,6 +1,6 @@
 import events from "alcumus-local-events";
 import { useContext, useEffect, useState } from "react";
-import { MainContext } from "../state/main/Context";
+import { MainContext } from "../state/Context";
 import { DocRenderer } from "../types";
 
 /**

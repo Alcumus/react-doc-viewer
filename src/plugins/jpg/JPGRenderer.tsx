@@ -1,7 +1,7 @@
 import events from "alcumus-local-events";
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../../state/main/Context";
+import { MainContext } from "../../state/Context";
 import { DocRenderer, FileType } from "../../types";
 
 const docTypes: FileType[] = ["image/jpg", "image/jpeg"];

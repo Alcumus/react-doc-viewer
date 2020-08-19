@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useReducer,
 } from "react";
-import { DocViewerProps } from "../..";
+import { DocViewerProps } from "..";
 import { MainStateActions, setAllDocuments } from "./actions";
 import { initialState, MainState, MainStateReducer, reducer } from "./reducer";
 

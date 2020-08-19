@@ -5,9 +5,9 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { setCurrentPage } from "../../state/pdf/actions";
-import { PDFContext } from "../../state/pdf/Context";
-import { IStyledProps } from "../../types";
+import { IStyledProps } from "../../../types";
+import { setCurrentPage } from "../state/actions";
+import { PDFContext } from "../state/Context";
 
 const PDFPagination: FC<{}> = () => {
   const {
