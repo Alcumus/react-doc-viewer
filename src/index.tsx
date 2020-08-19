@@ -47,6 +47,4 @@ const Container = styled.div`
   flex-direction: column;
   overflow: hidden;
   background: #eee;
-  width: 700px;
-  height: 700px;
 `;
