@@ -8,6 +8,20 @@
  yarn add git+https://github.com/Alcumus/al-react-doc-viewer.git
 ```
 
+<br />
+<br />
+
+## Current Renderable File Types
+
+| MIME Type             | Available |
+| --------------------- | --------- |
+| application/pdf       | `✓`       |
+| image/png             | `✓`       |
+| image/jpg, image/jpeg | `✓`       |
+
+<br />
+<br />
+
 ## Usage
 
 - **Warning** - _By default the component height will expand and contract to the current loaded file. The width will expand to fill the parent._
@@ -53,7 +67,7 @@ You can provide a theme object with one or all of the available properties.
 
 Any styling applied to the `<DocViewer>` component, is directly applied to the main `div` container.
 
-`//TODO - Add css classes throughout component for full customisability.`
+**`//TODO - Add css classes throughout component for full customisability.`**
 
 ### Styling - CSS Class
 
@@ -87,15 +101,57 @@ You can provide a config object, which configures parts of the component as requ
 <DocViewer documents={docs} config={{ disableHeader: false }} />
 ```
 
+<br />
+<br />
+
 ## Contributing
 
-##
+### Creating a Renderer Plugin
+
+Create a new folder inside `src/plugins`.
+
+> e.g. `src/plugins/jpg`
+
+Inside this folder, create a Renderer React Typescript file.
+
+> e.g. `JPGRenderer.tsx`
+
+Inside JPGRenderer, export a functional component of type `DocRenderer`
+
+```tsx
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { MainContext } from "../../state/Context";
+import { DocRenderer } from "../../types";
+import linkRenderResponder from "../../utils/linkRenderResponder";
+
+const JPGRenderer: DocRenderer = () => {
+  // Fetch the currentDocument loaded from MainContext state
+  const {
+    state: { currentDocument },
+  } = useContext(MainContext);
+
+  if (!currentDocument) return null;
+
+  return <img src={currentDocument.base64Data} />;
+};
+
+export default JPGRenderer;
+
+// List the MIME types that this renderer will respond to
+JPGRenderer.fileTypes = ["image/jpg", "image/jpeg"];
+
+// If you have more than one renderer for the same MIME type, use priority. 1 is more preferable.
+JPGRenderer.priority = 1;
+
+// Add the renderer to an event listener for 'request-document-renderer' from "alcumus-local-events"
+linkRenderResponder(JPGRenderer);
+```
 
 ##
 
-##
-
-##
+<br />
+<br />
 
 ## Setup and Run Demo
 
