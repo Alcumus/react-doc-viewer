@@ -22,7 +22,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
     !props.documents.length
   ) {
     throw new Error(
-      "Please provide an array of documents to DocViewer.\ne.g. <DocViewer documents={[ 'https://mypdf.pdf' ]} />"
+      "Please provide an array of documents to DocViewer.\ne.g. <DocViewer documents={[ { uri: 'https://mypdf.pdf' } ]} />"
     );
   }
 
