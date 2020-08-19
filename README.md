@@ -17,7 +17,7 @@
 DocViewer requires at least an array of document objects to function.
 Each document object must have a uri to a file, either a url that returns a file or a local file.
 
-```typescript
+```tsx
 import DocViewer from "al-react-doc-viewer";
 
 function App() {
@@ -32,7 +32,7 @@ function App() {
 
 ### Themed
 
-You can provide a theme object with one or all of the available properties
+You can provide a theme object with one or all of the available properties.
 
 ```xml
 <DocViewer
@@ -53,6 +53,8 @@ You can provide a theme object with one or all of the available properties
 
 Any styling applied to the `<DocViewer>` component, is directly applied to the main `div` container.
 
+`//TODO - Add css classes throughout component for full customisability.`
+
 ### Styling - CSS Class
 
 ```xml
@@ -67,7 +69,7 @@ Any styling applied to the `<DocViewer>` component, is directly applied to the m
 
 ### Styling - StyledComponent
 
-```typescript
+```tsx
 import styled from "styled-components";
 //...
 <MyDocViewer documents={docs}/>
