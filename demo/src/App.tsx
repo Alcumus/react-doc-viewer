@@ -43,5 +43,6 @@ function App() {
 export default App;
 
 const DocumentViewer = styled(DocViewer)`
+  height: 600px;
   border-radius: 5px;
 `;
