@@ -1,4 +1,4 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, FC } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import HeaderBar from "./components/HeaderBar";
 import "./plugins";
@@ -15,8 +15,7 @@ export interface DocViewerProps {
   theme?: ITheme;
 }
 
-// const DocViewer: FC<DocViewerProps> = (props) => {
-const DocViewer = (props: DocViewerProps) => {
+const DocViewer: FC<DocViewerProps> = (props) => {
   if (
     !props.documents ||
     props.documents === undefined ||
