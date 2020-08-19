@@ -45,6 +45,7 @@ const DocumentNav: FC<{}> = () => {
 export default DocumentNav;
 
 const Container = styled.div`
+  min-width: 150px;
   flex-direction: row;
   margin: 0 10px;
   color: ${(props: IStyledProps) => props.theme.text_primary};

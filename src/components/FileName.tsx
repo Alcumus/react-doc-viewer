@@ -5,10 +5,10 @@ import { IStyledProps } from "../types";
 
 const FileName: FC<{}> = () => {
   const {
-    state: { currentDocument },
+    state: { currentDocument, config },
   } = useContext(MainContext);
 
-  if (!currentDocument) return null;
+  if (!currentDocument || config?.header?.disableFileName) return null;
 
   let fileName = currentDocument.uri;
   const splitURL = fileName.split("/");

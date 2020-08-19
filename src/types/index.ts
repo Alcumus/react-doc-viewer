@@ -2,7 +2,11 @@ import { FC } from "react";
 import { ThemedStyledProps } from "styled-components";
 
 export interface IConfig {
+  header?: IHeaderConfig;
+}
+export interface IHeaderConfig {
   disableHeader?: boolean;
+  disableFileName?: boolean;
 }
 export interface ITheme {
   primary?: string;

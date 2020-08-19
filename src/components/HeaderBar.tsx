@@ -10,7 +10,7 @@ const HeaderBar: FC<{}> = () => {
     state: { config },
   } = useContext(MainContext);
 
-  if (config?.disableHeader) return null;
+  if (config?.header?.disableHeader) return null;
 
   return (
     <Container>
@@ -24,6 +24,7 @@ export default HeaderBar;
 
 const Container = styled.div`
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   z-index: 1;
   padding: 0 10px;

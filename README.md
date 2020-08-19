@@ -118,7 +118,12 @@ const MyDocViewer = styled(DocViewer`
 You can provide a config object, which configures parts of the component as required.
 
 ```xml
-<DocViewer documents={docs} config={{ disableHeader: false }} />
+<DocViewer documents={docs} config={{
+ header: {
+  disableHeader: false,
+  disableFileName: false
+ }
+}} />
 ```
 
 <br />
@@ -219,9 +224,18 @@ export type FileType =
 
 ### `IConfig`
 
-| name           | type      |
-| -------------- | --------- |
-| disableHeader? | `boolean` |
+| name    | type                              |
+| ------- | --------------------------------- |
+| header? | [`IHeaderConfig`](#iheaderconfig) |
+
+---
+
+### `IHeaderConfig`
+
+| name             | type      |
+| ---------------- | --------- |
+| disableHeader?   | `boolean` |
+| disableFileName? | `boolean` |
 
 ---
 
