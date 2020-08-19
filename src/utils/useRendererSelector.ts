@@ -16,6 +16,8 @@ const useRendererSelector = (): {
   const [CurrentRenderer, setCurrentRenderer] = useState<DocRenderer>();
 
   useEffect(() => {
+    if (!currentDocument) return;
+
     Promise.resolve().then(async () => {
       const respondingRenderers: DocRenderer[] = [];
 

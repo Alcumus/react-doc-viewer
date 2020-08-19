@@ -1,8 +1,8 @@
 import React, { CSSProperties, FC } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import HeaderBar from "./components/HeaderBar";
-import "./plugins";
 import ProxyRenderer from "./components/ProxyRenderer";
+import "./plugins";
 import { AppProvider } from "./state/context";
 import { defaultTheme } from "./theme";
 import { IConfig, IDocument, ITheme } from "./types";
@@ -16,11 +16,7 @@ export interface DocViewerProps {
 }
 
 const DocViewer: FC<DocViewerProps> = (props) => {
-  if (
-    !props.documents ||
-    props.documents === undefined ||
-    !props.documents.length
-  ) {
+  if (!props.documents || props.documents === undefined) {
     throw new Error(
       "Please provide an array of documents to DocViewer.\ne.g. <DocViewer documents={[ { uri: 'https://mypdf.pdf' } ]} />"
     );
