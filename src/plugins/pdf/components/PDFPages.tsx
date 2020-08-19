@@ -1,10 +1,10 @@
 import React, { FC, useContext, useEffect } from "react";
 import { Document, Page } from "react-pdf";
 import styled from "styled-components";
-import { MainContext } from "../../../state/Context";
+import { MainContext } from "../../../state/context";
 import { IStyledProps } from "../../../types";
 import { setNumPages } from "../state/actions";
-import { PDFContext } from "../state/Context";
+import { PDFContext } from "../state/context";
 
 const PDFPages: FC<{}> = () => {
   const {

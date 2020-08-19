@@ -10,7 +10,7 @@ import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { IStyledProps } from "../../../types";
 import { setPDFPaginated, setZoomLevel } from "../state/actions";
-import { PDFContext } from "../state/Context";
+import { PDFContext } from "../state/context";
 import { initialPDFState } from "../state/reducer";
 import PDFPagination from "./PDFPagination";
 

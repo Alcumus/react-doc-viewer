@@ -1,7 +1,7 @@
 import React, { FC, useCallback, useContext } from "react";
 import styled from "styled-components";
 import { setRendererRect } from "../state/actions";
-import { MainContext } from "../state/Context";
+import { MainContext } from "../state/context";
 import { IStyledProps } from "../types";
 import useDocumentLoader from "../utils/useDocumentLoader";
 import useWindowSize from "../utils/useWindowSize";

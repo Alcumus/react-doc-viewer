@@ -1,7 +1,7 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { nextDocument, previousDocument } from "../state/actions";
-import { MainContext } from "../state/Context";
+import { MainContext } from "../state/context";
 import { IStyledProps } from "../types";
 
 const DocumentNav: FC<{}> = () => {

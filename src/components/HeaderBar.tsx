@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../state/Context";
+import { MainContext } from "../state/context";
 import { IStyledProps } from "../types";
 import DocumentNav from "./DocumentNav";
 import FileName from "./FileName";

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../../state/Context";
+import { MainContext } from "../../state/context";
 import { DocRenderer } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
 
