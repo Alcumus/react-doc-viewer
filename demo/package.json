@@ -3,7 +3,7 @@
  "version": "0.1.0",
  "private": true,
  "scripts": {
-  "clone-package": "cp -r ../src ./src/doc-viewer",
+  "setup-demo": "rm -rf src/doc-viewer && cp -r ../src ./src/doc-viewer && npm start",
   "start": "react-scripts start",
   "build": "react-scripts build",
   "test": "react-scripts test",
