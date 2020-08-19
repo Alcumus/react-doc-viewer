@@ -1,12 +1,21 @@
 # al-react-doc-viewer
 
-## Installing
+# Contents
 
-```bash
- npm i git+https://github.com/Alcumus/al-react-doc-viewer.git
- # or
- yarn add git+https://github.com/Alcumus/al-react-doc-viewer.git
-```
+- [Current Renderable File Types](#current-renderable-file-types)
+- [Installation](#installation)
+- [Usage](#usage) <br />
+  - [Basic](#basic)
+  - [Themed](#themed)
+  - [Styling](#styling)
+    - [CSS Class](#css-class)
+    - [React Inline](#react-inline)
+    - [StyledComponent](#styledcomponent)
+  - [Config](#config)
+- [Contributing](#contributing)
+  - [Creating a Renderer Plugin](#creating-a-renderer-plugin)
+- [API](#api)
+- [Setup Demo](#setup-demo)
 
 <br />
 <br />
@@ -18,6 +27,17 @@
 | application/pdf       | `✓`       |
 | image/png             | `✓`       |
 | image/jpg, image/jpeg | `✓`       |
+
+<br />
+<br />
+
+## Installation
+
+```bash
+ npm i git+https://github.com/Alcumus/al-react-doc-viewer.git
+ # or
+ yarn add git+https://github.com/Alcumus/al-react-doc-viewer.git
+```
 
 <br />
 <br />
@@ -69,19 +89,19 @@ Any styling applied to the `<DocViewer>` component, is directly applied to the m
 
 **`//TODO - Add css classes throughout component for full customisability.`**
 
-### Styling - CSS Class
+#### CSS Class
 
 ```xml
 <DocViewer documents={docs} className="my-doc-viewer-style" />
 ```
 
-### Styling - React Inline
+#### - React Inline
 
 ```xml
 <DocViewer documents={docs} style={{width: 500, height: 500}} />
 ```
 
-### Styling - StyledComponent
+#### - StyledComponent
 
 ```tsx
 import styled from "styled-components";
@@ -120,11 +140,11 @@ Inside JPGRenderer, export a functional component of type `DocRenderer`
 
 ```tsx
 import React, { useContext } from "react";
-import styled from "styled-components";
 import { MainContext } from "../../state/Context";
 import { DocRenderer } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
 
+// Be sure that Renderer correctly uses type DocRenderer
 const JPGRenderer: DocRenderer = () => {
   // Fetch the currentDocument loaded from MainContext state
   const {
@@ -148,11 +168,89 @@ JPGRenderer.priority = 1;
 linkRenderResponder(JPGRenderer);
 ```
 
-##
+If you are creating a renderer for a new MIME type, also update the following files.
+
+Update `src/plugins/index.ts` with a direct import to your new renderer file.
+This ensures that the linked event listener is running from the start of component use.
+
+```typescript
+import "./jpg/JPGRenderer";
+```
+
+Update `src/types/index.ts` with your new MIME type.
+This should match the array from JPGRenderer.filetypes.
+
+```typescript
+export type FileType =
+  | "application/pdf"
+  | "image/png"
+  | "image/jpg"
+  | "image/jpeg";
+```
 
 <br />
 <br />
 
-## Setup and Run Demo
+## API
+
+---
+
+### `DocViewer props`
+
+| name       | type                        |
+| ---------- | --------------------------- |
+| documents  | [`IDocument[]`](#idocument) |
+| className? | `string`                    |
+| style?     | `React.CSSProperties`       |
+| config?    | [`IConfig`](#iconfig)       |
+| theme?     | [`ITheme`](#itheme)         |
+
+---
+
+### `IDocument`
+
+| name        | type                                                               |
+| ----------- | ------------------------------------------------------------------ |
+| uri         | `string`                                                           |
+| fileType?   | [`FileType`](#current-renderable-file-types) - **Used Internally** |
+| base64Data? | `string` - **Used Internally**                                     |
+
+---
+
+### `IConfig`
+
+| name           | type      |
+| -------------- | --------- |
+| disableHeader? | `boolean` |
+
+---
+
+### `ITheme`
+
+| name                   | type      |
+| ---------------------- | --------- |
+| primary?               | `string`  |
+| secondary?             | `string`  |
+| tertiary?              | `string`  |
+| text_primary?          | `string`  |
+| text_secondary?        | `string`  |
+| text_tertiary?         | `string`  |
+| disableThemeScrollbar? | `boolean` |
+
+---
+
+### `DocRenderer`
+
+| name      | type                                           |
+| --------- | ---------------------------------------------- |
+| fileTypes | [`FileType[]`](#current-renderable-file-types) |
+| priority  | `number`                                       |
+
+---
+
+<br />
+<br />
+
+## Setup Demo
 
 `cd demo && npm i && npm run setup-demo`
