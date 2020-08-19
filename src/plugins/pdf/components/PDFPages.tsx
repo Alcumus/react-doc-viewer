@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { MainContext } from "../../../state";
 import { IStyledProps } from "../../../types";
 import { setNumPages } from "../state/actions";
-import { PDFContext } from "../state/context";
+import { PDFContext } from "../state";
 
 const PDFPages: FC<{}> = () => {
   const {

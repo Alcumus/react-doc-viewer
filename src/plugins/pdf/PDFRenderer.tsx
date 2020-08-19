@@ -6,7 +6,7 @@ import { DocRenderer } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
 import PDFControls from "./components/PDFControls";
 import PDFPages from "./components/PDFPages";
-import { PDFProvider } from "./state/context";
+import { PDFProvider } from "./state";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 

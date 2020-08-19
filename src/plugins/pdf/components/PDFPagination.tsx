@@ -7,7 +7,7 @@ import React, { FC, useContext } from "react";
 import styled from "styled-components";
 import { IStyledProps } from "../../../types";
 import { setCurrentPage } from "../state/actions";
-import { PDFContext } from "../state/context";
+import { PDFContext } from "../state";
 
 const PDFPagination: FC<{}> = () => {
   const {
