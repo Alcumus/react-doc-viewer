@@ -10,10 +10,6 @@ function App() {
         documents={[
           {
             uri:
-              "https://lh4.googleusercontent.com/proxy/G09nz0S8UJrG9oO69fWV3ugRt9oW1IS0IOW35v4woNt7NdZ9cUFNgVXB6iwjoSoi",
-          },
-          {
-            uri:
               "https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf",
           },
           { uri: require("./example-files/pdf.pdf") },
@@ -23,6 +19,9 @@ function App() {
           },
           { uri: "https://dummyimage.com/300" },
           { uri: "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg" },
+          {
+            uri: require("./example-files/gif.gif"),
+          },
         ]}
         theme={{
           primary: "#5296d8",

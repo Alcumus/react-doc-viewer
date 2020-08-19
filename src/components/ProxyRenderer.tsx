@@ -10,7 +10,10 @@ const ProxyRenderer: FC<{}> = () => {
   const { CurrentRenderer } = useDocumentLoader();
 
   const size = useWindowSize();
-  const { dispatch } = useContext(MainContext);
+  const {
+    state: { currentDocument },
+    dispatch,
+  } = useContext(MainContext);
 
   const containerRef = useCallback(
     (node) => node && dispatch(setRendererRect(node?.getBoundingClientRect())),
@@ -18,10 +21,12 @@ const ProxyRenderer: FC<{}> = () => {
     [size]
   );
 
-  if (!CurrentRenderer) return null;
   return (
     <Container ref={containerRef}>
-      <CurrentRenderer />
+      {CurrentRenderer && <CurrentRenderer />}
+      {!CurrentRenderer && (
+        <div>No Renderer for MIME type {currentDocument?.fileType}</div>
+      )}
     </Container>
   );
 };
