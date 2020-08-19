@@ -9,7 +9,7 @@ import useRendererSelector from "./useRendererSelector";
  */
 const useDocumentLoader = (): {
   currentDocument: IDocument | undefined;
-  CurrentRenderer: DocRenderer;
+  CurrentRenderer: DocRenderer | undefined;
 } => {
   const {
     state: { currentDocument },

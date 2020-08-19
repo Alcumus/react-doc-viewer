@@ -6,21 +6,21 @@ import React, {
   useReducer,
 } from "react";
 import { DocViewerProps } from "../../DocViewer";
-import { DocumentActions, setAllDocuments } from "./actions";
-import { initialState, MainState, reducer } from "./reducer";
+import { MainStateActions, setAllDocuments } from "./actions";
+import { initialState, MainState, MainStateReducer, reducer } from "./reducer";
 
 const MainContext = createContext<{
   state: MainState;
-  dispatch: Dispatch<DocumentActions>;
+  dispatch: Dispatch<MainStateActions>;
 }>({ state: initialState, dispatch: () => null });
 
 const AppProvider: FC<DocViewerProps> = (props) => {
   const { children, documents, config } = props;
 
-  const [state, dispatch] = useReducer(reducer, {
+  const [state, dispatch] = useReducer<MainStateReducer>(reducer, {
     ...initialState,
     documents: documents || [],
-    currentDocument: documents && documents.length ? documents[0] : null,
+    currentDocument: documents && documents.length ? documents[0] : undefined,
     config,
   });
 

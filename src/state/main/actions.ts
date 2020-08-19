@@ -59,7 +59,7 @@ export const setMainConfig = (config: IConfig): SetMainConfig => ({
   config,
 });
 
-export type DocumentActions =
+export type MainStateActions =
   | SetAllDocuments
   | NextDocument
   | PreviousDocument

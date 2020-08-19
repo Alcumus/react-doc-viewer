@@ -1,5 +1,5 @@
 import {
-  PDFActions,
+  PDFActions as PDFStateActions,
   SetCurrentPage,
   SetNumPages,
   SetPDFPaginated,
@@ -24,9 +24,14 @@ export const initialPDFState: PDFState = {
   currentPage: 1,
 };
 
-export const reducer = (
+export type PDFStateReducer = (
+  state: PDFState,
+  action: PDFStateActions
+) => PDFState;
+
+export const reducer: PDFStateReducer = (
   state = initialPDFState,
-  action: PDFActions
+  action: PDFStateActions
 ): PDFState => {
   switch (action.type) {
     case SET_ZOOM_LEVEL: {

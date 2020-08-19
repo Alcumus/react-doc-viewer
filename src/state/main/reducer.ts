@@ -1,6 +1,6 @@
 import { IDocument, IConfig } from "../../types";
 import {
-  DocumentActions,
+  MainStateActions,
   NEXT_DOCUMENT,
   PREVIOUS_DOCUMENT,
   SetAllDocuments,
@@ -29,9 +29,14 @@ export const initialState: MainState = {
   config: {},
 };
 
-export const reducer = (
+export type MainStateReducer = (
+  state: MainState,
+  action: MainStateActions
+) => MainState;
+
+export const reducer: MainStateReducer = (
   state = initialState,
-  action: DocumentActions
+  action: MainStateActions
 ): MainState => {
   switch (action.type) {
     case SET_ALL_DOCUMENTS: {

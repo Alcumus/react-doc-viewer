@@ -5,6 +5,7 @@ import { MainContext } from "../../state/main/Context";
 import { DocRenderer, FileType } from "../../types";
 
 const docTypes: FileType[] = ["image/jpg", "image/jpeg"];
+
 const JPGRenderer: DocRenderer = () => {
   const {
     state: { currentDocument },
@@ -23,11 +24,14 @@ export default JPGRenderer;
 
 JPGRenderer.priority = 1;
 
-events.on("request-document-renderer", (ev, payload, something) => {
-  if (docTypes.indexOf(payload.fileType) >= 0) {
-    something.push(JPGRenderer);
+events.on(
+  "request-document-renderer",
+  (_ev: any, payload: { fileType: FileType }, something: DocRenderer[]) => {
+    if (docTypes.indexOf(payload.fileType) >= 0) {
+      something.push(JPGRenderer);
+    }
   }
-});
+);
 
 const Container = styled.div`
   display: flex;

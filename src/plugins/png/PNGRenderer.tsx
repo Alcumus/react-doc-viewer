@@ -24,11 +24,14 @@ export default PNGRenderer;
 
 PNGRenderer.priority = 1;
 
-events.on("request-document-renderer", (ev, payload, something) => {
-  if (docTypes.indexOf(payload.fileType) >= 0) {
-    something.push(PNGRenderer);
+events.on(
+  "request-document-renderer",
+  (_ev: any, payload: { fileType: FileType }, something: DocRenderer[]) => {
+    if (docTypes.indexOf(payload.fileType) >= 0) {
+      something.push(PNGRenderer);
+    }
   }
-});
+);
 
 const Container = styled.div`
   display: flex;
