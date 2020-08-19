@@ -3,7 +3,7 @@ import styled, { ThemeProvider } from "styled-components";
 import HeaderBar from "./components/HeaderBar";
 import ProxyRenderer from "./components/ProxyRenderer";
 import "./plugins";
-import { AppProvider } from "./state/context";
+import { AppProvider } from "./state";
 import { defaultTheme } from "./theme";
 import { IConfig, IDocument, ITheme } from "./types";
 

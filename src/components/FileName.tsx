@@ -1,6 +1,6 @@
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { MainContext } from "../state/context";
+import { MainContext } from "../state";
 import { IStyledProps } from "../types";
 
 const FileName: FC<{}> = () => {

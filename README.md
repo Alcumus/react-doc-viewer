@@ -145,7 +145,7 @@ Inside JPGRenderer, export a functional component of type `DocRenderer`
 
 ```tsx
 import React, { useContext } from "react";
-import { MainContext } from "../../state/Context";
+import { MainContext } from "../../state";
 import { DocRenderer } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
 

@@ -1,6 +1,6 @@
 import { useContext, useEffect } from "react";
 import { updateCurrentDocument } from "../state/actions";
-import { MainContext } from "../state/context";
+import { MainContext } from "../state";
 import { DocRenderer, FileType, IDocument } from "../types";
 import useRendererSelector from "./useRendererSelector";
 
