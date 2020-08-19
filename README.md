@@ -89,7 +89,7 @@ Any styling applied to the `<DocViewer>` component, is directly applied to the m
 
 **`//TODO - Add css classes throughout component for full customisability.`**
 
-#### CSS Class
+#### - CSS Class
 
 ```xml
 <DocViewer documents={docs} className="my-doc-viewer-style" />
