@@ -4,9 +4,11 @@ import {
   NEXT_DOCUMENT,
   PREVIOUS_DOCUMENT,
   SetAllDocuments,
+  SetDocumentLoading,
   SetMainConfig,
   SetRendererRect,
   SET_ALL_DOCUMENTS,
+  SET_DOCUMENT_LOADING,
   SET_MAIN_CONFIG,
   SET_RENDERER_RECT,
   UpdateCurrentDocument,
@@ -16,6 +18,7 @@ import {
 export type MainState = {
   currentFileNo: number;
   documents: IDocument[];
+  documentLoading?: boolean;
   currentDocument?: IDocument;
   rendererRect?: DOMRect;
   config?: IConfig;
@@ -24,6 +27,7 @@ export type MainState = {
 export const initialState: MainState = {
   currentFileNo: 0,
   documents: [],
+  documentLoading: true,
   currentDocument: undefined,
   rendererRect: undefined,
   config: {},
@@ -44,12 +48,18 @@ export const reducer: MainStateReducer = (
       return { ...state, documents, currentDocument: documents[0] || null };
     }
 
+    case SET_DOCUMENT_LOADING: {
+      const { value } = action as SetDocumentLoading;
+      return { ...state, documentLoading: value };
+    }
+
     case NEXT_DOCUMENT: {
       const nextDocumentNo = state.currentFileNo + 1;
       return {
         ...state,
         currentFileNo: nextDocumentNo,
         currentDocument: state.documents[nextDocumentNo],
+        documentLoading: true,
       };
     }
 
@@ -59,6 +69,7 @@ export const reducer: MainStateReducer = (
         ...state,
         currentFileNo: state.currentFileNo - 1,
         currentDocument: state.documents[prevDocumentNo],
+        documentLoading: true,
       };
     }
 
@@ -67,6 +78,7 @@ export const reducer: MainStateReducer = (
       return {
         ...state,
         currentDocument: document,
+        // documentLoading: false,
       };
     }
 

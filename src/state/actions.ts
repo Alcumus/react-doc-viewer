@@ -11,6 +11,17 @@ export const setAllDocuments = (documents: IDocument[]): SetAllDocuments => ({
   documents,
 });
 
+// SET_DOCUMENT_LOADING
+export const SET_DOCUMENT_LOADING: string = "SET_DOCUMENT_LOADING";
+export interface SetDocumentLoading {
+  type: typeof SET_DOCUMENT_LOADING;
+  value: boolean;
+}
+export const setDocumentLoading = (value: boolean): SetDocumentLoading => ({
+  type: SET_DOCUMENT_LOADING,
+  value,
+});
+
 // NEXT_DOCUMENT
 export const NEXT_DOCUMENT: string = "NEXT_DOCUMENT";
 export interface NextDocument {
@@ -61,6 +72,7 @@ export const setMainConfig = (config: IConfig): SetMainConfig => ({
 
 export type MainStateActions =
   | SetAllDocuments
+  | SetDocumentLoading
   | NextDocument
   | PreviousDocument
   | UpdateCurrentDocument
