@@ -1,14 +1,13 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { MainContext } from "../state";
+import { configState } from "../state/atoms";
 import { IStyledProps } from "../types";
 import DocumentNav from "./DocumentNav";
 import FileName from "./FileName";
 
 const HeaderBar: FC<{}> = () => {
-  const {
-    state: { config },
-  } = useContext(MainContext);
+  const [config] = useRecoilState(configState);
 
   if (config?.header?.disableHeader) return null;
 

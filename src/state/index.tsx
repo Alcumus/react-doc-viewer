@@ -1,40 +1,27 @@
-import React, {
-  createContext,
-  Dispatch,
-  FC,
-  useEffect,
-  useReducer,
-} from "react";
+import { MutableSnapshot } from "recoil";
 import { DocViewerProps } from "..";
-import { MainStateActions, setAllDocuments } from "./actions";
-import { initialState, MainState, MainStateReducer, reducer } from "./reducer";
+import { IConfig, IDocument } from "../types";
+import {
+  configState,
+  privateCurrentDocumentState,
+  documentsState,
+} from "./atoms";
 
-const MainContext = createContext<{
-  state: MainState;
-  dispatch: Dispatch<MainStateActions>;
-}>({ state: initialState, dispatch: () => null });
-
-const AppProvider: FC<DocViewerProps> = (props) => {
-  const { children, documents, config } = props;
-
-  const [state, dispatch] = useReducer<MainStateReducer>(reducer, {
-    ...initialState,
-    documents: documents || [],
-    currentDocument: documents && documents.length ? documents[0] : undefined,
-    config,
-  });
-
-  // On inital load, and whenever they change,
-  // replace documents with the new props passed in
-  useEffect(() => {
-    dispatch(setAllDocuments(documents));
-  }, [documents]);
-
-  return (
-    <MainContext.Provider value={{ state, dispatch }}>
-      {children}
-    </MainContext.Provider>
-  );
+export type MainState = {
+  currentFileNo: number;
+  documents: IDocument[];
+  documentLoading?: boolean;
+  currentDocument?: IDocument;
+  rendererRect?: DOMRect;
+  config?: IConfig;
 };
 
-export { MainContext, AppProvider };
+export const initializeRecoilRoot = (
+  props: DocViewerProps
+): ((mutableSnapshot: MutableSnapshot) => void) => {
+  return ({ set }) => {
+    set(documentsState, props.documents);
+    set(privateCurrentDocumentState, props.documents[0]);
+    set(configState, props.config || {});
+  };
+};
