@@ -1,9 +1,10 @@
 import React, { CSSProperties, FC } from "react";
+import { RecoilRoot } from "recoil";
 import styled, { ThemeProvider } from "styled-components";
 import HeaderBar from "./components/HeaderBar";
 import ProxyRenderer from "./components/ProxyRenderer";
 import "./plugins";
-import { AppProvider } from "./state";
+import { initializeRecoilRoot } from "./state";
 import { defaultTheme } from "./theme";
 import { IConfig, IDocument, ITheme } from "./types";
 
@@ -23,7 +24,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
   }
 
   return (
-    <AppProvider {...props}>
+    <RecoilRoot initializeState={initializeRecoilRoot(props)}>
       <ThemeProvider
         theme={props.theme ? { ...defaultTheme, ...props.theme } : defaultTheme}
       >
@@ -32,7 +33,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
           <ProxyRenderer />
         </Container>
       </ThemeProvider>
-    </AppProvider>
+    </RecoilRoot>
   );
 };
 

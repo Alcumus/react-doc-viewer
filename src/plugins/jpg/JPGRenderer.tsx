@@ -1,13 +1,12 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { MainContext } from "../../state";
+import { currentDocumentState } from "../../state/atoms";
 import { DocRenderer } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
 
 const JPGRenderer: DocRenderer = () => {
-  const {
-    state: { currentDocument },
-  } = useContext(MainContext);
+  const currentDocument = useRecoilValue(currentDocumentState);
 
   if (!currentDocument) return null;
 
