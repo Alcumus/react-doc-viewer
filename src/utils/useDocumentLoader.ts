@@ -37,6 +37,7 @@ const useDocumentLoader = (): {
               fileType: blob.type as FileType,
             })
           );
+          dispatch(setDocumentLoading(false));
         });
         fileReader.readAsDataURL(blob);
       });
