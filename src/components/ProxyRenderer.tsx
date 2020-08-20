@@ -11,7 +11,7 @@ const ProxyRenderer: FC<{}> = () => {
 
   const size = useWindowSize();
   const {
-    // state: { currentDocument },
+    state: { currentDocument, documentLoading },
     dispatch,
   } = useContext(MainContext);
 
@@ -21,12 +21,21 @@ const ProxyRenderer: FC<{}> = () => {
     [size]
   );
 
+  const Contents = () => {
+    if (documentLoading) {
+      return <div>{/*Loading*/}</div>;
+    } else {
+      if (CurrentRenderer) {
+        return <CurrentRenderer />;
+      } else {
+        return <div>No Renderer for file type {currentDocument?.fileType}</div>;
+      }
+    }
+  };
+
   return (
     <Container ref={containerRef}>
-      {CurrentRenderer && <CurrentRenderer />}
-      {/* {!CurrentRenderer && (
-        <div>No Renderer for MIME type {currentDocument?.fileType}</div>
-      )} */}
+      <Contents />
     </Container>
   );
 };
