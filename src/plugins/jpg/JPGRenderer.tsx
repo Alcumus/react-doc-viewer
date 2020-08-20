@@ -1,15 +1,12 @@
-import events from "alcumus-local-events";
-import React, { useContext } from "react";
+import React from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { MainContext } from "../../state/main/Context";
-import { DocRenderer, FileType } from "../../types";
-
-const docTypes: FileType[] = ["image/jpg", "image/jpeg"];
+import { currentDocumentState } from "../../state/atoms";
+import { DocRenderer } from "../../types";
+import linkRenderResponder from "../../utils/linkRenderResponder";
 
 const JPGRenderer: DocRenderer = () => {
-  const {
-    state: { currentDocument },
-  } = useContext(MainContext);
+  const currentDocument = useRecoilValue(currentDocumentState);
 
   if (!currentDocument) return null;
 
@@ -22,16 +19,9 @@ const JPGRenderer: DocRenderer = () => {
 
 export default JPGRenderer;
 
+JPGRenderer.fileTypes = ["image/jpg", "image/jpeg"];
 JPGRenderer.priority = 1;
-
-events.on(
-  "request-document-renderer",
-  (_ev: any, payload: { fileType: FileType }, something: DocRenderer[]) => {
-    if (docTypes.indexOf(payload.fileType) >= 0) {
-      something.push(JPGRenderer);
-    }
-  }
-);
+linkRenderResponder(JPGRenderer);
 
 const Container = styled.div`
   display: flex;

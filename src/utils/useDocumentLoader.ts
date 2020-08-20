@@ -1,6 +1,7 @@
-import { useContext, useEffect } from "react";
-import { updateCurrentDocument } from "../state/main/actions";
-import { MainContext } from "../state/main/Context";
+import { useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { currentFileNoState } from "../state/atoms";
+import { currentDocumentState } from "../state/atoms";
 import { DocRenderer, FileType, IDocument } from "../types";
 import useRendererSelector from "./useRendererSelector";
 
@@ -11,10 +12,10 @@ const useDocumentLoader = (): {
   currentDocument: IDocument | undefined;
   CurrentRenderer: DocRenderer | undefined;
 } => {
-  const {
-    state: { currentDocument },
-    dispatch,
-  } = useContext(MainContext);
+  const [currentDocument, setCurrentDocument] = useRecoilState(
+    currentDocumentState
+  );
+  const currentFileNo = useRecoilValue(currentFileNoState);
 
   const { CurrentRenderer } = useRendererSelector();
 
@@ -30,13 +31,11 @@ const useDocumentLoader = (): {
 
         const fileReader = new FileReader();
         fileReader.addEventListener("loadend", () => {
-          dispatch(
-            updateCurrentDocument({
-              ...currentDocument,
-              base64Data: fileReader.result as string,
-              fileType: blob.type as FileType,
-            })
-          );
+          setCurrentDocument({
+            ...currentDocument,
+            base64Data: fileReader.result as string,
+            fileType: blob.type as FileType,
+          });
         });
         fileReader.readAsDataURL(blob);
       });
@@ -44,7 +43,7 @@ const useDocumentLoader = (): {
     // eslint ignore added, because a warning appears for dispatch to
     // be a dependancy of the useEffect
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [documentURI]
+    [currentFileNo, documentURI]
   );
 
   return { currentDocument, CurrentRenderer };

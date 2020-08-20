@@ -1,6 +1,6 @@
 import React from "react";
-import { DocViewer } from "./doc-viewer";
 import styled from "styled-components";
+import DocViewer from "./doc-viewer";
 
 function App() {
   return (
@@ -19,6 +19,9 @@ function App() {
           },
           { uri: "https://dummyimage.com/300" },
           { uri: "https://upload.wikimedia.org/wikipedia/en/a/a9/Example.jpg" },
+          {
+            uri: require("./example-files/gif.gif"),
+          },
         ]}
         theme={{
           primary: "#5296d8",
@@ -30,7 +33,7 @@ function App() {
           disableThemeScrollbar: false,
         }}
         config={{
-          disableHeader: false,
+          header: { disableHeader: false, disableFileName: false },
         }}
       />
     </div>
@@ -40,5 +43,6 @@ function App() {
 export default App;
 
 const DocumentViewer = styled(DocViewer)`
+  height: 600px;
   border-radius: 5px;
 `;

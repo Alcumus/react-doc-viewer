@@ -1,14 +1,15 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { MainContext } from "../state/main/Context";
+import { configState } from "../state/atoms";
+import { currentDocumentState } from "../state/atoms";
 import { IStyledProps } from "../types";
 
 const FileName: FC<{}> = () => {
-  const {
-    state: { currentDocument },
-  } = useContext(MainContext);
+  const [config] = useRecoilState(configState);
+  const currentDocument = useRecoilValue(currentDocumentState);
 
-  if (!currentDocument) return null;
+  if (!currentDocument || config?.header?.disableFileName) return null;
 
   let fileName = currentDocument.uri;
   const splitURL = fileName.split("/");
@@ -27,4 +28,5 @@ const Container = styled.div`
   color: ${(props: IStyledProps) => props.theme.text_primary};
   font-weight: bold;
   margin: 0 10px;
+  overflow: hidden;
 `;

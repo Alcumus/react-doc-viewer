@@ -1,15 +1,14 @@
 import React, { FC, useContext, useEffect } from "react";
 import { Document, Page } from "react-pdf";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { MainContext } from "../../state/main/Context";
-import { setNumPages } from "../../state/pdf/actions";
-import { PDFContext } from "../../state/pdf/Context";
-import { IStyledProps } from "../../types";
+import { currentDocumentState, rendererRectState } from "../../../state/atoms";
+import { IStyledProps } from "../../../types";
+import { PDFContext } from "../state";
+import { setNumPages } from "../state/actions";
 
 const PDFPages: FC<{}> = () => {
-  const {
-    state: { currentDocument },
-  } = useContext(MainContext);
+  const currentDocument = useRecoilValue(currentDocumentState);
 
   const {
     state: { paginated },
@@ -49,11 +48,10 @@ export const SinglePage: FC<PDFPageProps> = (props) => {
   const { pageNum } = props;
 
   const {
-    state: { rendererRect },
-  } = useContext(MainContext);
-  const {
     state: { zoomLevel, numPages, currentPage },
   } = useContext(PDFContext);
+
+  const rendererRect = useRecoilValue(rendererRectState);
 
   const _pageNum = pageNum || currentPage;
 

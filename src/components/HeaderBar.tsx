@@ -1,16 +1,15 @@
-import React, { FC, useContext } from "react";
+import React, { FC } from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
-import { MainContext } from "../state/main/Context";
+import { configState } from "../state/atoms";
 import { IStyledProps } from "../types";
 import DocumentNav from "./DocumentNav";
 import FileName from "./FileName";
 
 const HeaderBar: FC<{}> = () => {
-  const {
-    state: { config },
-  } = useContext(MainContext);
+  const [config] = useRecoilState(configState);
 
-  if (config?.disableHeader) return null;
+  if (config?.header?.disableHeader) return null;
 
   return (
     <Container>
@@ -24,6 +23,7 @@ export default HeaderBar;
 
 const Container = styled.div`
   display: flex;
+  justify-content: flex-end;
   align-items: center;
   z-index: 1;
   padding: 0 10px;

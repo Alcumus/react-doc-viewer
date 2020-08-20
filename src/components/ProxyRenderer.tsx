@@ -1,27 +1,44 @@
-import React, { FC, useCallback, useContext } from "react";
+import React, { FC, useCallback } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { setRendererRect } from "./state/main/actions";
-import { MainContext } from "./state/main/Context";
-import useDocumentLoader from "./utils/useDocumentLoader";
-import useWindowSize from "./utils/useWindowSize";
-import { IStyledProps } from "./types";
+import { documentLoadingState, rendererRectState } from "../state/atoms";
+import { currentDocumentState } from "../state/atoms";
+import { IStyledProps } from "../types";
+import useDocumentLoader from "../utils/useDocumentLoader";
+import useWindowSize from "../utils/useWindowSize";
 
 const ProxyRenderer: FC<{}> = () => {
   const { CurrentRenderer } = useDocumentLoader();
 
+  const [, setRendererRect] = useRecoilState(rendererRectState);
+  const currentDocument = useRecoilValue(currentDocumentState);
+  const documentLoading = useRecoilValue(documentLoadingState);
+
   const size = useWindowSize();
-  const { dispatch } = useContext(MainContext);
 
   const containerRef = useCallback(
-    (node) => node && dispatch(setRendererRect(node?.getBoundingClientRect())),
+    (node) => {
+      node && setRendererRect(node?.getBoundingClientRect());
+    },
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [size]
   );
 
-  if (!CurrentRenderer) return null;
+  const Contents = () => {
+    if (documentLoading) {
+      return <div>{/*Loading*/}</div>;
+    } else {
+      if (CurrentRenderer) {
+        return <CurrentRenderer />;
+      } else {
+        return <div>No Renderer for file type {currentDocument?.fileType}</div>;
+      }
+    }
+  };
+
   return (
     <Container ref={containerRef}>
-      <CurrentRenderer />
+      <Contents />
     </Container>
   );
 };

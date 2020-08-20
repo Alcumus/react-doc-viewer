@@ -8,10 +8,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
-import { setPDFPaginated, setZoomLevel } from "../../state/pdf/actions";
-import { PDFContext } from "../../state/pdf/Context";
-import { initialPDFState } from "../../state/pdf/reducer";
-import { IStyledProps } from "../../types";
+import { IStyledProps } from "../../../types";
+import { setPDFPaginated, setZoomLevel } from "../state/actions";
+import { PDFContext } from "../state";
+import { initialPDFState } from "../state/reducer";
 import PDFPagination from "./PDFPagination";
 
 const PDFControls: FC<{}> = () => {

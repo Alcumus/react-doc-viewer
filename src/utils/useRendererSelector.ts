@@ -1,6 +1,7 @@
 import events from "alcumus-local-events";
-import { useContext, useEffect, useState } from "react";
-import { MainContext } from "../state/main/Context";
+import { useEffect, useState } from "react";
+import { useRecoilValue } from "recoil";
+import { currentDocumentState } from "../state/atoms";
 import { DocRenderer } from "../types";
 
 /**
@@ -9,13 +10,13 @@ import { DocRenderer } from "../types";
 const useRendererSelector = (): {
   CurrentRenderer: DocRenderer | undefined;
 } => {
-  const {
-    state: { currentDocument },
-  } = useContext(MainContext);
+  const currentDocument = useRecoilValue(currentDocumentState);
 
   const [CurrentRenderer, setCurrentRenderer] = useState<DocRenderer>();
 
   useEffect(() => {
+    if (!currentDocument) return;
+
     Promise.resolve().then(async () => {
       const respondingRenderers: DocRenderer[] = [];
 
