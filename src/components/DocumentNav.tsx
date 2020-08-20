@@ -21,9 +21,9 @@ const DocumentNav: FC<{}> = () => {
 
   return (
     <Container>
-      <span>
+      <p>
         Doc {currentFileNo + 1} of {documents.length}
-      </span>
+      </p>
 
       <ButtonPrev
         onClick={() => dispatch(previousDocument())}
@@ -46,7 +46,10 @@ export default DocumentNav;
 
 const Container = styled.div`
   min-width: 150px;
+  display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
   margin: 0 10px;
   color: ${(props: IStyledProps) => props.theme.text_primary};
 `;
