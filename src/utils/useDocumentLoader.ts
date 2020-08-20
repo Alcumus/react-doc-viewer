@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { updateCurrentDocument } from "../state/actions";
+import { setDocumentLoading, updateCurrentDocument } from "../state/actions";
 import { MainContext } from "../state";
 import { DocRenderer, FileType, IDocument } from "../types";
 import useRendererSelector from "./useRendererSelector";
@@ -12,7 +12,7 @@ const useDocumentLoader = (): {
   CurrentRenderer: DocRenderer | undefined;
 } => {
   const {
-    state: { currentDocument },
+    state: { currentFileNo, currentDocument },
     dispatch,
   } = useContext(MainContext);
 
@@ -45,7 +45,7 @@ const useDocumentLoader = (): {
     // eslint ignore added, because a warning appears for dispatch to
     // be a dependancy of the useEffect
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [documentURI]
+    [currentFileNo, documentURI]
   );
 
   return { currentDocument, CurrentRenderer };
