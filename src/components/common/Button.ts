@@ -30,6 +30,7 @@ const Button = styled.a<ButtonProps>`
   text-decoration: none;
   border-radius: 35px;
   opacity: ${(props) => (props.disabled ? 0.4 : 1)};
+  pointer-events: ${(props) => (props.disabled ? "none" : "all")};
   box-shadow: 2px 2px 3px #00000033;
 
   @media (max-width: 768px) {
@@ -37,6 +38,11 @@ const Button = styled.a<ButtonProps>`
     height: 30px;
     font-size: 15px;
   }
+`;
+
+export const ButtonPrimary = styled(Button)``;
+export const ButtonSecondary = styled(Button)`
+  ${ButtonSecondaryStyle}
 `;
 
 export default Button;
