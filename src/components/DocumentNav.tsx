@@ -1,3 +1,5 @@
+import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
@@ -8,6 +10,7 @@ import {
 } from "../state/atoms";
 import { setNextDocument, setPreviousDocument } from "../state/selectors";
 import { IStyledProps } from "../types";
+import Button, { ButtonSecondaryStyle } from "./common/Button";
 
 const DocumentNav: FC<{}> = () => {
   const [, nextDocument] = useRecoilState(setNextDocument);
@@ -35,14 +38,14 @@ const DocumentNav: FC<{}> = () => {
         onClick={() => previousDocument()}
         disabled={currentFileNo === 0}
       >
-        {"<"}
+        <FontAwesomeIcon icon={faArrowLeft} />
       </ButtonPrev>
 
       <ButtonNext
         onClick={() => nextDocument()}
         disabled={currentFileNo >= documents.length - 1}
       >
-        {">"}
+        <FontAwesomeIcon icon={faArrowRight} />
       </ButtonNext>
     </Container>
   );
@@ -60,12 +63,12 @@ const Container = styled.div`
   color: ${(props: IStyledProps) => props.theme.text_primary};
 `;
 
-const Button = styled.button`
+const ButtonOLD = styled.button`
   width: 25px;
   height: 25px;
   border-radius: 40px;
-  background-color: ${(props: IStyledProps) => props.theme.secondary};
   opacity: ${(props) => (props.disabled ? 0.4 : 1)};
+  background-color: ${(props: IStyledProps) => props.theme.secondary};
   color: ${(props: IStyledProps) => props.theme.text_secondary};
   text-align: center;
   box-shadow: 2px 2px 3px #00000033;
@@ -73,8 +76,16 @@ const Button = styled.button`
   outline: none;
 `;
 const ButtonPrev = styled(Button)`
+  ${ButtonSecondaryStyle}
+  width: 25px;
+  height: 25px;
   margin: 0 5px 0 10px;
+
+  @media (max-width: 768px) {
+    width: 25px;
+    height: 25px;
+  }
 `;
-const ButtonNext = styled(Button)`
+const ButtonNext = styled(ButtonPrev)`
   margin: 0 5px;
 `;

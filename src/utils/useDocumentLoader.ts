@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { currentFileNoState } from "../state/atoms";
-import { currentDocumentState } from "../state/atoms";
+import { currentDocumentState, currentFileNoState } from "../state/atoms";
 import { DocRenderer, FileType, IDocument } from "../types";
 import useRendererSelector from "./useRendererSelector";
 

@@ -5,9 +5,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useContext } from "react";
 import styled from "styled-components";
+import Button from "../../../components/common/Button";
 import { IStyledProps } from "../../../types";
-import { setCurrentPage } from "../state/actions";
 import { PDFContext } from "../state";
+import { setCurrentPage } from "../state/actions";
 
 const PDFPagination: FC<{}> = () => {
   const {
@@ -16,47 +17,48 @@ const PDFPagination: FC<{}> = () => {
   } = useContext(PDFContext);
 
   return (
-    <>
+    <Container>
       <PageNavButtonLeft
         onClick={() => dispatch(setCurrentPage(currentPage - 1))}
         disabled={currentPage === 1}
       >
         <FontAwesomeIcon icon={faStepBackward} />
       </PageNavButtonLeft>
+
+      <PageTag>
+        Page {currentPage}/{numPages}
+      </PageTag>
+
       <PageNavButtonRight
         onClick={() => dispatch(setCurrentPage(currentPage + 1))}
         disabled={currentPage >= numPages}
       >
         <FontAwesomeIcon icon={faStepForward} />
       </PageNavButtonRight>
-    </>
+    </Container>
   );
 };
 
 export default PDFPagination;
 
-const PageNavButton = styled.button`
-  width: 35px;
-  height: 35px;
-  border-radius: 35px;
-  font-size: 14px;
-  background-color: ${(props: IStyledProps) => props.theme.primary};
+const Container = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const PageNavButtonLeft = styled(Button)`
+  margin: 0 5px;
+`;
+const PageNavButtonRight = styled(Button)`
+  margin: 0 20px 0 5px;
+`;
+
+const PageTag = styled.div`
   color: ${(props: IStyledProps) => props.theme.text_primary};
-  opacity: ${(props) => (props.disabled ? 0.3 : 1)};
-  text-align: center;
-  box-shadow: 2px 2px 3px #00000033;
-  border: 0;
-  outline: none;
+  font-size: 14px;
+  text-align: left;
 
   @media (max-width: 768px) {
-    width: 30px;
-    height: 30px;
-    font-size: 11px;
+    font-size: 10px;
   }
-`;
-const PageNavButtonLeft = styled(PageNavButton)`
-  margin-left: 5px;
-`;
-const PageNavButtonRight = styled(PageNavButton)`
-  margin: 0 20px 0 5px;
 `;
