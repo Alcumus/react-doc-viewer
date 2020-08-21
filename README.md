@@ -144,21 +144,25 @@ Inside this folder, create a Renderer React Typescript file.
 Inside JPGRenderer, export a functional component of type `DocRenderer`
 
 ```tsx
-import React, { useContext } from "react";
-import { MainContext } from "../../state";
+import React from "react";
+import { useRecoilValue } from "recoil";
+import styled from "styled-components";
+import MainAtoms from "../../state/atoms";
 import { DocRenderer } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
 
 // Be sure that Renderer correctly uses type DocRenderer
 const JPGRenderer: DocRenderer = () => {
-  // Fetch the currentDocument loaded from MainContext state
-  const {
-    state: { currentDocument },
-  } = useContext(MainContext);
+  // Fetch the currentDocument loaded from main component state
+  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
 
   if (!currentDocument) return null;
 
-  return <img src={currentDocument.base64Data} />;
+  return (
+    <Container id="jpg-renderer">
+      <Img id="jpg-img" src={currentDocument.base64Data} />
+    </Container>
+  );
 };
 
 export default JPGRenderer;
