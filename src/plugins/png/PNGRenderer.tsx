@@ -11,8 +11,8 @@ const PNGRenderer: DocRenderer = () => {
   if (!currentDocument) return null;
 
   return (
-    <Container>
-      <Img src={currentDocument.base64Data} />
+    <Container id="png-renderer">
+      <Img id="png-img" src={currentDocument.base64Data} />
     </Container>
   );
 };
