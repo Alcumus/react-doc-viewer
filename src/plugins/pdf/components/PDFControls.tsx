@@ -2,15 +2,19 @@ import {
   faArrowsAltH,
   faArrowsAltV,
   faExpand,
+  faFileDownload,
   faSearchMinus,
   faSearchPlus,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC, useContext } from "react";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
+import Button from "../../../components/common/Button";
+import { currentDocumentState } from "../../../state/atoms";
 import { IStyledProps } from "../../../types";
-import { setPDFPaginated, setZoomLevel } from "../state/actions";
 import { PDFContext } from "../state";
+import { setPDFPaginated, setZoomLevel } from "../state/actions";
 import { initialPDFState } from "../state/reducer";
 import PDFPagination from "./PDFPagination";
 
@@ -20,29 +24,40 @@ const PDFControls: FC<{}> = () => {
     dispatch,
   } = useContext(PDFContext);
 
+  const currentDocument = useRecoilValue(currentDocumentState);
+
   return (
     <Container>
       {paginated && numPages > 1 && <PDFPagination />}
 
-      <IconButton onMouseDown={() => dispatch(setZoomLevel(zoomLevel - 0.1))}>
+      {currentDocument?.base64Data && (
+        <Button
+          href={currentDocument?.base64Data}
+          download={currentDocument?.uri}
+        >
+          <FontAwesomeIcon icon={faFileDownload} />
+        </Button>
+      )}
+
+      <Button onMouseDown={() => dispatch(setZoomLevel(zoomLevel - 0.1))}>
         <FontAwesomeIcon icon={faSearchMinus} />
-      </IconButton>
+      </Button>
 
-      <IconButton onMouseDown={() => dispatch(setZoomLevel(zoomLevel + 0.1))}>
+      <Button onMouseDown={() => dispatch(setZoomLevel(zoomLevel + 0.1))}>
         <FontAwesomeIcon icon={faSearchPlus} />
-      </IconButton>
+      </Button>
 
-      <IconButton
+      <Button
         onMouseDown={() => dispatch(setZoomLevel(initialPDFState.zoomLevel))}
         disabled={zoomLevel === initialPDFState.zoomLevel}
       >
         <FontAwesomeIcon icon={faExpand} />
-      </IconButton>
+      </Button>
 
       {numPages > 1 && (
-        <IconButton onMouseDown={() => dispatch(setPDFPaginated(!paginated))}>
+        <Button onMouseDown={() => dispatch(setPDFPaginated(!paginated))}>
           <FontAwesomeIcon icon={paginated ? faArrowsAltV : faArrowsAltH} />
-        </IconButton>
+        </Button>
       )}
     </Container>
   );
@@ -63,26 +78,5 @@ const Container = styled.div`
 
   @media (max-width: 768px) {
     padding: 6px;
-  }
-`;
-
-const IconButton = styled.button`
-  width: 35px;
-  height: 35px;
-  border-radius: 35px;
-  font-size: 18px;
-  margin-left: 5px;
-  background-color: ${(props: IStyledProps) => props.theme.primary};
-  color: ${(props: IStyledProps) => props.theme.text_primary};
-  opacity: ${(props) => (props.disabled ? 0.4 : 1)};
-  text-align: center;
-  box-shadow: 2px 2px 3px #00000033;
-  border: 0;
-  outline: none;
-
-  @media (max-width: 768px) {
-    width: 30px;
-    height: 30px;
-    font-size: 15px;
   }
 `;
