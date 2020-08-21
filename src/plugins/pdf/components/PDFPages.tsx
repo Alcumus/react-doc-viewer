@@ -56,9 +56,9 @@ export const SinglePage: FC<PDFPageProps> = (props) => {
   const _pageNum = pageNum || currentPage;
 
   return (
-    <PageWrapper last={_pageNum >= numPages}>
+    <PageWrapper id="pdf-page-wrapper" last={_pageNum >= numPages}>
       {!paginated && (
-        <PageTag>
+        <PageTag id="pdf-page-info">
           Page {_pageNum}/{numPages}
         </PageTag>
       )}

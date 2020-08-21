@@ -10,7 +10,7 @@ import {
 } from "../state/atoms";
 import { setNextDocument, setPreviousDocument } from "../state/selectors";
 import { IStyledProps } from "../types";
-import Button, { ButtonSecondaryStyle } from "./common/Button";
+import { ButtonSecondary } from "./common/Button";
 
 const DocumentNav: FC<{}> = () => {
   const [, nextDocument] = useRecoilState(setNextDocument);
@@ -29,12 +29,13 @@ const DocumentNav: FC<{}> = () => {
   }
 
   return (
-    <Container>
-      <p>
+    <Container id="doc-nav">
+      <p id="doc-nav-info">
         Doc {currentFileNo + 1} of {documents.length}
       </p>
 
       <ButtonPrev
+        id="doc-nav-prev"
         onClick={() => previousDocument()}
         disabled={currentFileNo === 0}
       >
@@ -42,6 +43,7 @@ const DocumentNav: FC<{}> = () => {
       </ButtonPrev>
 
       <ButtonNext
+        id="doc-nav-next"
         onClick={() => nextDocument()}
         disabled={currentFileNo >= documents.length - 1}
       >
@@ -63,22 +65,9 @@ const Container = styled.div`
   color: ${(props: IStyledProps) => props.theme.text_primary};
 `;
 
-const ButtonOLD = styled.button`
-  width: 25px;
-  height: 25px;
-  border-radius: 40px;
-  opacity: ${(props) => (props.disabled ? 0.4 : 1)};
-  background-color: ${(props: IStyledProps) => props.theme.secondary};
-  color: ${(props: IStyledProps) => props.theme.text_secondary};
-  text-align: center;
-  box-shadow: 2px 2px 3px #00000033;
-  border: 0;
-  outline: none;
-`;
-const ButtonPrev = styled(Button)`
-  ${ButtonSecondaryStyle}
-  width: 25px;
-  height: 25px;
+const ButtonPrev = styled(ButtonSecondary)`
+  width: 30px;
+  height: 30px;
   margin: 0 5px 0 10px;
 
   @media (max-width: 768px) {

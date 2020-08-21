@@ -17,7 +17,7 @@ const FileName: FC<{}> = () => {
     fileName = splitURL[splitURL.length - 1];
   }
 
-  return <Container>{fileName}</Container>;
+  return <Container id="file-name">{fileName}</Container>;
 };
 
 export default FileName;

@@ -17,19 +17,21 @@ const PDFPagination: FC<{}> = () => {
   } = useContext(PDFContext);
 
   return (
-    <Container>
+    <Container id="pdf-pagination">
       <PageNavButtonLeft
+        id="pdf-pagination-prev"
         onClick={() => dispatch(setCurrentPage(currentPage - 1))}
         disabled={currentPage === 1}
       >
         <FontAwesomeIcon icon={faStepBackward} />
       </PageNavButtonLeft>
 
-      <PageTag>
+      <PageTag id="pdf-pagination-info">
         Page {currentPage}/{numPages}
       </PageTag>
 
       <PageNavButtonRight
+        id="pdf-pagination-next"
         onClick={() => dispatch(setCurrentPage(currentPage + 1))}
         disabled={currentPage >= numPages}
       >

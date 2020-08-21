@@ -27,11 +27,12 @@ const PDFControls: FC<{}> = () => {
   const currentDocument = useRecoilValue(currentDocumentState);
 
   return (
-    <Container>
+    <Container id="pdf-controls">
       {paginated && numPages > 1 && <PDFPagination />}
 
       {currentDocument?.base64Data && (
         <Button
+          id="pdf-download"
           href={currentDocument?.base64Data}
           download={currentDocument?.uri}
         >
@@ -39,15 +40,22 @@ const PDFControls: FC<{}> = () => {
         </Button>
       )}
 
-      <Button onMouseDown={() => dispatch(setZoomLevel(zoomLevel - 0.1))}>
+      <Button
+        id="pdf-zoom-out"
+        onMouseDown={() => dispatch(setZoomLevel(zoomLevel - 0.1))}
+      >
         <FontAwesomeIcon icon={faSearchMinus} />
       </Button>
 
-      <Button onMouseDown={() => dispatch(setZoomLevel(zoomLevel + 0.1))}>
+      <Button
+        id="pdf-zoom-in"
+        onMouseDown={() => dispatch(setZoomLevel(zoomLevel + 0.1))}
+      >
         <FontAwesomeIcon icon={faSearchPlus} />
       </Button>
 
       <Button
+        id="pdf-zoom-reset"
         onMouseDown={() => dispatch(setZoomLevel(initialPDFState.zoomLevel))}
         disabled={zoomLevel === initialPDFState.zoomLevel}
       >
@@ -55,7 +63,10 @@ const PDFControls: FC<{}> = () => {
       </Button>
 
       {numPages > 1 && (
-        <Button onMouseDown={() => dispatch(setPDFPaginated(!paginated))}>
+        <Button
+          id="pdf-toggle-pagination"
+          onMouseDown={() => dispatch(setPDFPaginated(!paginated))}
+        >
           <FontAwesomeIcon icon={paginated ? faArrowsAltV : faArrowsAltH} />
         </Button>
       )}

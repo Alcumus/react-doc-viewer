@@ -11,8 +11,8 @@ const JPGRenderer: DocRenderer = () => {
   if (!currentDocument) return null;
 
   return (
-    <Container>
-      <Img src={currentDocument.base64Data} />
+    <Container id="jpg-renderer">
+      <Img id="jpg-img" src={currentDocument.base64Data} />
     </Container>
   );
 };

@@ -28,7 +28,7 @@ const DocViewer: FC<DocViewerProps> = (props) => {
       <ThemeProvider
         theme={props.theme ? { ...defaultTheme, ...props.theme } : defaultTheme}
       >
-        <Container {...props}>
+        <Container id="al-react-doc-viewer" {...props}>
           <HeaderBar />
           <ProxyRenderer />
         </Container>
