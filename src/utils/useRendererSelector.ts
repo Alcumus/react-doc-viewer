@@ -1,7 +1,7 @@
 import events from "alcumus-local-events";
 import { useEffect, useState } from "react";
 import { useRecoilValue } from "recoil";
-import { currentDocumentState } from "../state/atoms";
+import MainAtoms from "../state/atoms";
 import { DocRenderer } from "../types";
 
 /**
@@ -10,7 +10,7 @@ import { DocRenderer } from "../types";
 const useRendererSelector = (): {
   CurrentRenderer: DocRenderer | undefined;
 } => {
-  const currentDocument = useRecoilValue(currentDocumentState);
+  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
 
   const [CurrentRenderer, setCurrentRenderer] = useState<DocRenderer>();
 

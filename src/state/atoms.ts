@@ -1,40 +1,43 @@
 import { atom, selector } from "recoil";
+import { initialMainState } from ".";
 import { IConfig, IDocument } from "../types";
 
-export const currentFileNoState = atom<number>({
-  key: "currentFileNoState",
-  default: 0,
-});
+export default class MainAtoms {
+  static currentFileNoState = atom<number>({
+    key: "currentFileNoState",
+    default: initialMainState.currentFileNo,
+  });
 
-export const documentsState = atom<IDocument[]>({
-  key: "documentsState",
-  default: [],
-});
+  static documentsState = atom<IDocument[]>({
+    key: "documentsState",
+    default: initialMainState.documents,
+  });
 
-export const documentLoadingState = atom<boolean>({
-  key: "documentLoadingState",
-  default: true,
-});
+  static documentLoadingState = atom<boolean>({
+    key: "documentLoadingState",
+    default: initialMainState.documentLoading,
+  });
 
-export const privateCurrentDocumentState = atom<IDocument | undefined>({
-  key: "privateCurrentDocumentState",
-  default: undefined,
-});
-export const currentDocumentState = selector<IDocument | undefined>({
-  key: "currentDocumentState",
-  get: ({ get }) => get(privateCurrentDocumentState),
-  set: ({ get, set }, newValue) => {
-    set(privateCurrentDocumentState, newValue);
-    set(documentLoadingState, false);
-  },
-});
+  static privateCurrentDocumentState = atom<IDocument | undefined>({
+    key: "privateCurrentDocumentState",
+    default: initialMainState.currentDocument,
+  });
+  static currentDocumentState = selector<IDocument | undefined>({
+    key: "currentDocumentState",
+    get: ({ get }) => get(MainAtoms.privateCurrentDocumentState),
+    set: ({ get, set }, newValue) => {
+      set(MainAtoms.privateCurrentDocumentState, newValue);
+      set(MainAtoms.documentLoadingState, false);
+    },
+  });
 
-export const rendererRectState = atom<DOMRect | undefined>({
-  key: "rendererRectState",
-  default: undefined,
-});
+  static rendererRectState = atom<DOMRect | undefined>({
+    key: "rendererRectState",
+    default: initialMainState.rendererRect,
+  });
 
-export const configState = atom<IConfig>({
-  key: "configState",
-  default: {},
-});
+  static configState = atom<IConfig>({
+    key: "configState",
+    default: initialMainState.config,
+  });
+}

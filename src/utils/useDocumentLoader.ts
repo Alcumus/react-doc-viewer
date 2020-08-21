@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { currentDocumentState, currentFileNoState } from "../state/atoms";
+import MainAtoms from "../state/atoms";
 import { DocRenderer, FileType, IDocument } from "../types";
 import useRendererSelector from "./useRendererSelector";
 
@@ -12,9 +12,9 @@ const useDocumentLoader = (): {
   CurrentRenderer: DocRenderer | undefined;
 } => {
   const [currentDocument, setCurrentDocument] = useRecoilState(
-    currentDocumentState
+    MainAtoms.currentDocumentState
   );
-  const currentFileNo = useRecoilValue(currentFileNoState);
+  const currentFileNo = useRecoilValue(MainAtoms.currentFileNoState);
 
   const { CurrentRenderer } = useRendererSelector();
 

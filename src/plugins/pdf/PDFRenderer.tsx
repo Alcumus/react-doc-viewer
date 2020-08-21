@@ -5,20 +5,17 @@ import { pdfjs } from "react-pdf";
 import styled from "styled-components";
 import { DocRenderer, IStyledProps } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
+import PDFPages from "./components/pages/PDFPages";
 import PDFControls from "./components/PDFControls";
-import PDFPages from "./components/PDFPages";
-import { PDFProvider } from "./state";
 
 pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const PDFRenderer: DocRenderer = () => {
   return (
-    <PDFProvider>
-      <Container id="pdf-renderer">
-        <PDFControls />
-        <PDFPages />
-      </Container>
-    </PDFProvider>
+    <Container id="pdf-renderer">
+      <PDFControls />
+      <PDFPages />
+    </Container>
   );
 };
 
