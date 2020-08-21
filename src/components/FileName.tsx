@@ -1,13 +1,12 @@
 import React, { FC } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { configState } from "../state/atoms";
-import { currentDocumentState } from "../state/atoms";
+import MainAtoms from "../state/atoms";
 import { IStyledProps } from "../types";
 
 const FileName: FC<{}> = () => {
-  const [config] = useRecoilState(configState);
-  const currentDocument = useRecoilValue(currentDocumentState);
+  const config = useRecoilValue(MainAtoms.configState);
+  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
 
   if (!currentDocument || config?.header?.disableFileName) return null;
 

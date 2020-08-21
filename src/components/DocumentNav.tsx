@@ -1,23 +1,19 @@
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import {
-  currentDocumentState,
-  currentFileNoState,
-  documentsState,
-} from "../state/atoms";
-import { setNextDocument, setPreviousDocument } from "../state/selectors";
+import MainAtoms from "../state/atoms";
+import MainSelectors from "../state/selectors";
 import { IStyledProps } from "../types";
 import { ButtonSecondary } from "./common/Button";
 
 const DocumentNav: FC<{}> = () => {
-  const [, nextDocument] = useRecoilState(setNextDocument);
-  const [, previousDocument] = useRecoilState(setPreviousDocument);
-  const currentFileNo = useRecoilValue(currentFileNoState);
-  const documents = useRecoilValue(documentsState);
-  const currentDocument = useRecoilValue(currentDocumentState);
+  const nextDocument = useSetRecoilState(MainSelectors.setNextDocument);
+  const previousDocument = useSetRecoilState(MainSelectors.setPreviousDocument);
+  const currentFileNo = useRecoilValue(MainAtoms.currentFileNoState);
+  const documents = useRecoilValue(MainAtoms.documentsState);
+  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
 
   if (documents.length <= 1 || !currentDocument) return null;
 

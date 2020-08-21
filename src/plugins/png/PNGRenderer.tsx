@@ -1,12 +1,12 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { currentDocumentState } from "../../state/atoms";
+import MainAtoms from "../../state/atoms";
 import { DocRenderer } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
 
 const PNGRenderer: DocRenderer = () => {
-  const currentDocument = useRecoilValue(currentDocumentState);
+  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
 
   if (!currentDocument) return null;
 
