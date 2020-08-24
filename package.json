@@ -34,7 +34,8 @@
   "typescript": "^3.9.7"
  },
  "scripts": {
-  "start": "react-scripts start AppDev.tsx",
+  "start": "react-scripts start",
+  "prepare": "npm run build",
   "build": "rm -rf build && tsc -p tsconfig-npm.json",
   "test": "react-scripts test",
   "eject": "react-scripts eject",

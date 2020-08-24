@@ -3,11 +3,7 @@
     "outDir": "./build",
     "target": "es5",
     "module": "esnext",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,7 +17,11 @@
     "jsx": "react",
     "noEmit": true
   },
-  "include": [
-    "src"
+  "include": ["src"],
+  "exclude": [
+    "src/__tests__",
+    "src/_example-files_",
+    "src/serviceWorker.ts",
+    "src/setupTests.ts"
   ]
 }
