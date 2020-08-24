@@ -22,6 +22,7 @@
     "src/__tests__",
     "src/_example-files_",
     "src/serviceWorker.ts",
-    "src/setupTests.ts"
+    "src/setupTests.ts",
+    "src/index.tsx"
   ]
 }

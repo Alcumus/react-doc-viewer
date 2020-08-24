@@ -1,11 +1,11 @@
 {
  "name": "al-react-doc-viewer",
- "version": "0.0.4",
+ "version": "0.0.7",
  "description": "Document viewer for react. Renders online/local documents. Plugins for new document renderers.",
  "author": "Matthew Mogford",
  "license": "ISC",
- "main": "build/index.js",
- "types": "build/index.d.ts",
+ "main": "build/DocViewer.js",
+ "types": "build/DocViewer.d.ts",
  "dependencies": {
   "@fortawesome/fontawesome-svg-core": "^1.2.30",
   "@fortawesome/free-solid-svg-icons": "^5.14.0",
