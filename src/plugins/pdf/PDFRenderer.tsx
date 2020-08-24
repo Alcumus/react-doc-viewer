@@ -12,7 +12,7 @@ pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker;
 
 const PDFRenderer: DocRenderer = () => {
   return (
-    <Container id="pdf-renderer">
+    <Container id="pdf-renderer" data-testid="pdf-renderer">
       <PDFControls />
       <PDFPages />
     </Container>

@@ -23,8 +23,6 @@ const PDFControls: FC<{}> = () => {
   const resetZoomLevel = useResetRecoilState(PDFAtoms.zoomLevel);
   const numPages = useRecoilValue(PDFAtoms.numPages);
 
-  console.log("paginated");
-
   const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
 
   return (

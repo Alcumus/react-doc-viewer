@@ -1,5 +1,5 @@
 import { MutableSnapshot } from "recoil";
-import { DocViewerProps } from "..";
+import { DocViewerProps } from "../DocViewer";
 import { IConfig, IDocument } from "../types";
 import MainAtoms from "./atoms";
 
