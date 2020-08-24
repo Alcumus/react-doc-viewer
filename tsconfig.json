@@ -2,8 +2,12 @@
   "compilerOptions": {
     "outDir": "./build",
     "target": "es5",
-    "module": "commonjs",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "declaration": true,
     "allowJs": true,
     "skipLibCheck": true,
@@ -14,8 +18,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    // "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "noEmit": true
   },
-  "include": ["src"]
+  "include": [
+    "src"
+  ]
 }

@@ -1,47 +1,22 @@
-import React, { CSSProperties, FC } from "react";
-import { RecoilRoot } from "recoil";
-import styled, { ThemeProvider } from "styled-components";
-import HeaderBar from "./components/HeaderBar";
-import ProxyRenderer from "./components/ProxyRenderer";
-import "./plugins";
-import { initializeRecoilRoot } from "./state";
-import { defaultTheme } from "./theme";
-import { IConfig, IDocument, ITheme } from "./types";
+import React from "react";
+import ReactDOM from "react-dom";
+import DocViewer from "./DocViewer";
+import "./index.css";
+// import * as serviceWorker from "./serviceWorker";
 
-export interface DocViewerProps {
-  documents: IDocument[];
-  className?: string;
-  style?: CSSProperties;
-  config?: IConfig;
-  theme?: ITheme;
-}
+ReactDOM.render(
+  <React.StrictMode>
+    <DocViewer
+      documents={[
+        { uri: require("./_example-files_/pdf.pdf") },
+        { uri: require("./_example-files_/gif.gif") },
+      ]}
+    />
+  </React.StrictMode>,
+  document.getElementById("root")
+);
 
-const DocViewer: FC<DocViewerProps> = (props) => {
-  if (!props.documents || props.documents === undefined) {
-    throw new Error(
-      "Please provide an array of documents to DocViewer.\ne.g. <DocViewer documents={[ { uri: 'https://mypdf.pdf' } ]} />"
-    );
-  }
-
-  return (
-    <RecoilRoot initializeState={initializeRecoilRoot(props)}>
-      <ThemeProvider
-        theme={props.theme ? { ...defaultTheme, ...props.theme } : defaultTheme}
-      >
-        <Container id="al-react-doc-viewer" {...props}>
-          <HeaderBar />
-          <ProxyRenderer />
-        </Container>
-      </ThemeProvider>
-    </RecoilRoot>
-  );
-};
-
-export default DocViewer;
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  background: #eee;
-`;
+// If you want your app to work offline and load faster, you can change
+// unregister() to register() below. Note this comes with some pitfalls.
+// Learn more about service workers: https://bit.ly/CRA-PWA
+// serviceWorker.unregister();

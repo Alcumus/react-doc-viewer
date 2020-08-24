@@ -1,274 +1,44 @@
-# al-react-doc-viewer
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-# Contents
+## Available Scripts
 
-- [Current Renderable File Types](#current-renderable-file-types)
-- [Installation](#installation)
-- [Usage](#usage) <br />
-  - [Basic](#basic)
-  - [Themed](#themed)
-  - [Styling](#styling)
-    - [CSS Class](#css-class)
-    - [React Inline](#react-inline)
-    - [StyledComponent](#styledcomponent)
-  - [Config](#config)
-- [Contributing](#contributing)
-  - [Creating a Renderer Plugin](#creating-a-renderer-plugin)
-- [API](#api)
-- [Setup Demo](#setup-demo)
+In the project directory, you can run:
 
-<br />
-<br />
+### `yarn start`
 
-## Current Renderable File Types
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-| MIME Type             | Available |
-| --------------------- | --------- |
-| application/pdf       | `✓`       |
-| image/png             | `✓`       |
-| image/jpg, image/jpeg | `✓`       |
-
-<br />
-<br />
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-## Installation
+### `yarn test`
 
-```bash
- npm i git+https://github.com/Alcumus/al-react-doc-viewer.git
- # or
- yarn add git+https://github.com/Alcumus/al-react-doc-viewer.git
-```
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-<br />
-<br />
+### `yarn build`
 
-## Usage
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-- **Warning** - _By default the component height will expand and contract to the current loaded file. The width will expand to fill the parent._
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-### Basic
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-DocViewer requires at least an array of document objects to function.
-Each document object must have a uri to a file, either a url that returns a file or a local file.
+### `yarn eject`
 
-```tsx
-import DocViewer from "al-react-doc-viewer";
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-function App() {
-  const docs = [
-    { uri: "https://url-to-my-pdf.pdf" },
-    { uri: require("./example-files/pdf.pdf") }, // Local File
-  ];
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-  return <DocViewer documents={docs} />;
-}
-```
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-### Themed
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-You can provide a theme object with one or all of the available properties.
+## Learn More
 
-```xml
-<DocViewer
-  documents={docs}
-  theme={{
-    primary: "#5296d8",
-    secondary: "#ffffff",
-    tertiary: "#5296d899",
-    text_primary: "#ffffff",
-    text_secondary: "#5296d8",
-    text_tertiary: "#00000099",
-    disableThemeScrollbar: false,
-  }}
-/>
-```
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-### Styling
-
-Any styling applied to the `<DocViewer>` component, is directly applied to the main `div` container.
-
-**`//TODO - Add css classes throughout component for full customisability.`**
-
-#### - CSS Class
-
-```xml
-<DocViewer documents={docs} className="my-doc-viewer-style" />
-```
-
-#### - React Inline
-
-```xml
-<DocViewer documents={docs} style={{width: 500, height: 500}} />
-```
-
-#### - StyledComponent
-
-```tsx
-import styled from "styled-components";
-//...
-<MyDocViewer documents={docs}/>
-//...
-const MyDocViewer = styled(DocViewer`
- border-radius: 10px;
-`
-```
-
-### Config
-
-You can provide a config object, which configures parts of the component as required.
-
-```xml
-<DocViewer documents={docs} config={{
- header: {
-  disableHeader: false,
-  disableFileName: false
- }
-}} />
-```
-
-<br />
-<br />
-
-## Contributing
-
-### Creating a Renderer Plugin
-
-Create a new folder inside `src/plugins`.
-
-> e.g. `src/plugins/jpg`
-
-Inside this folder, create a Renderer React Typescript file.
-
-> e.g. `JPGRenderer.tsx`
-
-Inside JPGRenderer, export a functional component of type `DocRenderer`
-
-```tsx
-import React from "react";
-import { useRecoilValue } from "recoil";
-import styled from "styled-components";
-import MainAtoms from "../../state/atoms";
-import { DocRenderer } from "../../types";
-import linkRenderResponder from "../../utils/linkRenderResponder";
-
-// Be sure that Renderer correctly uses type DocRenderer
-const JPGRenderer: DocRenderer = () => {
-  // Fetch the currentDocument loaded from main component state
-  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
-
-  if (!currentDocument) return null;
-
-  return (
-    <Container id="jpg-renderer">
-      <Img id="jpg-img" src={currentDocument.base64Data} />
-    </Container>
-  );
-};
-
-export default JPGRenderer;
-
-// List the MIME types that this renderer will respond to
-JPGRenderer.fileTypes = ["image/jpg", "image/jpeg"];
-
-// If you have more than one renderer for the same MIME type, use priority. 1 is more preferable.
-JPGRenderer.priority = 1;
-
-// Add the renderer to an event listener for 'request-document-renderer' from "alcumus-local-events"
-linkRenderResponder(JPGRenderer);
-```
-
-If you are creating a renderer for a new MIME type, also update the following files.
-
-Update `src/plugins/index.ts` with a direct import to your new renderer file.
-This ensures that the linked event listener is running from the start of component use.
-
-```typescript
-import "./jpg/JPGRenderer";
-```
-
-Update `src/types/index.ts` with your new MIME type.
-This should match the array from JPGRenderer.filetypes.
-
-```typescript
-export type FileType =
-  | "application/pdf"
-  | "image/png"
-  | "image/jpg"
-  | "image/jpeg";
-```
-
-<br />
-<br />
-
-## API
-
----
-
-### `DocViewer props`
-
-| name       | type                        |
-| ---------- | --------------------------- |
-| documents  | [`IDocument[]`](#idocument) |
-| className? | `string`                    |
-| style?     | `React.CSSProperties`       |
-| config?    | [`IConfig`](#iconfig)       |
-| theme?     | [`ITheme`](#itheme)         |
-
----
-
-### `IDocument`
-
-| name        | type                                                               |
-| ----------- | ------------------------------------------------------------------ |
-| uri         | `string`                                                           |
-| fileType?   | [`FileType`](#current-renderable-file-types) - **Used Internally** |
-| base64Data? | `string` - **Used Internally**                                     |
-
----
-
-### `IConfig`
-
-| name    | type                              |
-| ------- | --------------------------------- |
-| header? | [`IHeaderConfig`](#iheaderconfig) |
-
----
-
-### `IHeaderConfig`
-
-| name             | type      |
-| ---------------- | --------- |
-| disableHeader?   | `boolean` |
-| disableFileName? | `boolean` |
-
----
-
-### `ITheme`
-
-| name                   | type      |
-| ---------------------- | --------- |
-| primary?               | `string`  |
-| secondary?             | `string`  |
-| tertiary?              | `string`  |
-| text_primary?          | `string`  |
-| text_secondary?        | `string`  |
-| text_tertiary?         | `string`  |
-| disableThemeScrollbar? | `boolean` |
-
----
-
-### `DocRenderer`
-
-| name      | type                                           |
-| --------- | ---------------------------------------------- |
-| fileTypes | [`FileType[]`](#current-renderable-file-types) |
-| priority  | `number`                                       |
-
----
-
-<br />
-<br />
-
-## Setup Demo
-
-`cd demo && npm i && npm run setup-demo`
+To learn React, check out the [React documentation](https://reactjs.org/).
