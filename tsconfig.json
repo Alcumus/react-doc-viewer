@@ -2,7 +2,7 @@
   "compilerOptions": {
     "outDir": "./build",
     "target": "es5",
-    "module": "commonjs",
+    "module": "esnext",
     "lib": ["dom", "dom.iterable", "esnext"],
     "declaration": true,
     "allowJs": true,
@@ -14,8 +14,14 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    // "noEmit": true,
-    "jsx": "react"
+    "jsx": "react",
+    "noEmit": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  "exclude": [
+    "src/__tests__",
+    "src/_example-files_",
+    "src/serviceWorker.ts",
+    "src/setupTests.ts"
+  ]
 }

@@ -12,7 +12,7 @@ const HeaderBar: FC<{}> = () => {
   if (config?.header?.disableHeader) return null;
 
   return (
-    <Container id="header-bar">
+    <Container id="header-bar" data-testid="header-bar">
       <FileName />
       <DocumentNav />
     </Container>

@@ -11,6 +11,7 @@ const ProxyRenderer: FC<{}> = () => {
   const setRendererRect = useSetRecoilState(MainAtoms.rendererRectState);
   const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
   const documentLoading = useRecoilValue(MainAtoms.documentLoadingState);
+  const documents = useRecoilValue(MainAtoms.documentsState);
 
   const size = useWindowSize();
 
@@ -23,14 +24,20 @@ const ProxyRenderer: FC<{}> = () => {
   );
 
   const Contents = () => {
-    if (documentLoading) {
-      return <div id="loading-renderer">{/*Loading*/}</div>;
+    if (!documents.length) {
+      return <div id="no-documents">{/* No Documents */}</div>;
+    } else if (documentLoading) {
+      return (
+        <div id="loading-renderer" data-testid="loading-renderer">
+          {/*Loading*/}
+        </div>
+      );
     } else {
       if (CurrentRenderer) {
         return <CurrentRenderer />;
       } else {
         return (
-          <div id="no-renderer">
+          <div id="no-renderer" data-testid="no-renderer">
             No Renderer for file type {currentDocument?.fileType}
           </div>
         );
