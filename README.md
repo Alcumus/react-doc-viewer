@@ -34,9 +34,9 @@
 ## Installation
 
 ```bash
- npm i git+https://github.com/Alcumus/al-react-doc-viewer.git
+ npm i al-react-doc-viewer
  # or
- yarn add git+https://github.com/Alcumus/al-react-doc-viewer.git
+ yarn add al-react-doc-viewer
 ```
 
 <br />
@@ -271,4 +271,4 @@ export type FileType =
 
 ## Setup Demo
 
-`cd demo && npm i && npm run setup-demo`
+`npm i && npm run setup-demo`
