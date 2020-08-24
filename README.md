@@ -87,8 +87,6 @@ You can provide a theme object with one or all of the available properties.
 
 Any styling applied to the `<DocViewer>` component, is directly applied to the main `div` container.
 
-**`//TODO - Add css classes throughout component for full customisability.`**
-
 #### - CSS Class
 
 ```xml
