@@ -1,3 +1,9 @@
+#### 0.0.8 (2020-08-24)
+
+##### Bug Fixes
+
+*  ignore index on building package, point main and types to main component file DocViewer.tsx (96f1a12f)
+
 #### 0.0.4 (2020-08-24)
 
 ##### New Features
