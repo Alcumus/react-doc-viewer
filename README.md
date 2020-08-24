@@ -271,4 +271,4 @@ export type FileType =
 
 ## Setup Demo
 
-`npm i && npm run setup-demo`
+`npm i && npm run start`
