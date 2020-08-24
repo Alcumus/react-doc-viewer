@@ -1,6 +1,6 @@
 {
  "name": "al-react-doc-viewer",
- "version": "0.0.7",
+ "version": "0.0.8",
  "description": "Document viewer for react. Renders online/local documents. Plugins for new document renderers.",
  "author": "Matthew Mogford",
  "license": "ISC",
