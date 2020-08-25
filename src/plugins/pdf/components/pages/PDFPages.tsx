@@ -2,17 +2,17 @@ import React, { FC, useEffect } from "react";
 import { Document } from "react-pdf";
 import { useRecoilValue, useResetRecoilState, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import MainAtoms from "../../../../state/atoms";
-import PDFAtoms from "../../state/atoms";
+import DocViewerState from "../../../../state";
+import PDFRendererState from "../../state";
 import { PDFAllPages } from "./PDFAllPages";
 import PDFSinglePage from "./PDFSinglePage";
 
 const PDFPages: FC<{}> = () => {
-  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
-  const setNumPages = useSetRecoilState(PDFAtoms.numPages);
-  const resetNumPages = useResetRecoilState(PDFAtoms.numPages);
-  const resetCurrentPage = useResetRecoilState(PDFAtoms.currentPage);
-  const paginated = useRecoilValue(PDFAtoms.paginated);
+  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
+  const setNumPages = useSetRecoilState(PDFRendererState.numPages);
+  const resetNumPages = useResetRecoilState(PDFRendererState.numPages);
+  const resetCurrentPage = useResetRecoilState(PDFRendererState.currentPage);
+  const paginated = useRecoilValue(PDFRendererState.paginated);
 
   useEffect(() => {
     resetNumPages();

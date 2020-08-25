@@ -8,11 +8,13 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import Button from "../../../components/common/Button";
 import { IStyledProps } from "../../../types";
-import PDFAtoms from "../state/atoms";
+import PDFRendererState from "../state";
 
 const PDFPagination: FC<{}> = () => {
-  const [currentPage, setCurrentPage] = useRecoilState(PDFAtoms.currentPage);
-  const numPages = useRecoilValue(PDFAtoms.numPages);
+  const [currentPage, setCurrentPage] = useRecoilState(
+    PDFRendererState.currentPage
+  );
+  const numPages = useRecoilValue(PDFRendererState.numPages);
 
   return (
     <Container id="pdf-pagination">

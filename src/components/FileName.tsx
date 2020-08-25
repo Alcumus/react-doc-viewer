@@ -1,12 +1,12 @@
 import React, { FC } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import MainAtoms from "../state/atoms";
+import DocViewerState from "../state";
 import { IStyledProps } from "../types";
 
 const FileName: FC<{}> = () => {
-  const config = useRecoilValue(MainAtoms.configState);
-  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
+  const config = useRecoilValue(DocViewerState.config);
+  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
 
   if (!currentDocument || config?.header?.disableFileName) return null;
 

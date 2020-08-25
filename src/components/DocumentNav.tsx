@@ -3,17 +3,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { FC } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import MainAtoms from "../state/atoms";
-import MainSelectors from "../state/selectors";
+import DocViewerState from "../state";
+import DocViewerSelectors from "../state/selectors";
 import { IStyledProps } from "../types";
 import { ButtonSecondary } from "./common/Button";
 
 const DocumentNav: FC<{}> = () => {
-  const nextDocument = useSetRecoilState(MainSelectors.setNextDocument);
-  const previousDocument = useSetRecoilState(MainSelectors.setPreviousDocument);
-  const currentFileNo = useRecoilValue(MainAtoms.currentFileNoState);
-  const documents = useRecoilValue(MainAtoms.documentsState);
-  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
+  const nextDocument = useSetRecoilState(DocViewerSelectors.setNextDocument);
+  const previousDocument = useSetRecoilState(
+    DocViewerSelectors.setPreviousDocument
+  );
+  const currentFileNo = useRecoilValue(DocViewerState.currentFileNo);
+  const documents = useRecoilValue(DocViewerState.documents);
+  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
 
   if (documents.length <= 1 || !currentDocument) return null;
 

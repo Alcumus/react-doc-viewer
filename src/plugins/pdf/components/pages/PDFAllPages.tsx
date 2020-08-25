@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import { useRecoilValue } from "recoil";
-import PDFAtoms from "../../state/atoms";
+import PDFRendererState from "../../state";
 import PDFSinglePage from "./PDFSinglePage";
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 }
 
 export const PDFAllPages: FC<Props> = (props) => {
-  const numPages = useRecoilValue(PDFAtoms.numPages);
+  const numPages = useRecoilValue(PDFRendererState.numPages);
 
   const PagesArray = [];
   for (let i = 0; i < numPages; i++) {

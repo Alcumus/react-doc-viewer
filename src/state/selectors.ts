@@ -1,18 +1,18 @@
 import { selector } from "recoil";
-import MainAtoms from "./atoms";
+import DocViewerState from ".";
 
-export default class MainSelectors {
+export default class DocViewerSelectors {
   static setNextDocument = selector<void>({
     key: "setNextDocument",
     get: () => {},
     set: ({ get, set }) => {
-      const nextDocumentNo = get(MainAtoms.currentFileNoState) + 1;
-      set(MainAtoms.currentFileNoState, nextDocumentNo);
+      const nextDocumentNo = get(DocViewerState.currentFileNo) + 1;
+      set(DocViewerState.currentFileNo, nextDocumentNo);
       set(
-        MainAtoms.privateCurrentDocumentState,
-        get(MainAtoms.documentsState)[nextDocumentNo]
+        DocViewerState.privateCurrentDocument,
+        get(DocViewerState.documents)[nextDocumentNo]
       );
-      set(MainAtoms.documentLoadingState, true);
+      set(DocViewerState.documentLoading, true);
     },
   });
 
@@ -20,13 +20,13 @@ export default class MainSelectors {
     key: "setPreviousDocument",
     get: ({ get }) => {},
     set: ({ get, set }) => {
-      const prevDocumentNo = get(MainAtoms.currentFileNoState) - 1;
-      set(MainAtoms.currentFileNoState, prevDocumentNo);
+      const prevDocumentNo = get(DocViewerState.currentFileNo) - 1;
+      set(DocViewerState.currentFileNo, prevDocumentNo);
       set(
-        MainAtoms.privateCurrentDocumentState,
-        get(MainAtoms.documentsState)[prevDocumentNo]
+        DocViewerState.privateCurrentDocument,
+        get(DocViewerState.documents)[prevDocumentNo]
       );
-      set(MainAtoms.documentLoadingState, true);
+      set(DocViewerState.documentLoading, true);
     },
   });
 }

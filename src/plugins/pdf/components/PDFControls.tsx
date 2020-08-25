@@ -11,19 +11,21 @@ import React, { FC } from "react";
 import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
 import styled from "styled-components";
 import Button from "../../../components/common/Button";
-import MainAtoms from "../../../state/atoms";
+import DocViewerState from "../../../state";
 import { IStyledProps } from "../../../types";
 import { initialPDFState } from "../state";
-import PDFAtoms from "../state/atoms";
+import PDFRendererState from "../state";
 import PDFPagination from "./PDFPagination";
 
 const PDFControls: FC<{}> = () => {
-  const [paginated, setPDFPaginated] = useRecoilState(PDFAtoms.paginated);
-  const [zoomLevel, setZoomLevel] = useRecoilState(PDFAtoms.zoomLevel);
-  const resetZoomLevel = useResetRecoilState(PDFAtoms.zoomLevel);
-  const numPages = useRecoilValue(PDFAtoms.numPages);
+  const [paginated, setPDFPaginated] = useRecoilState(
+    PDFRendererState.paginated
+  );
+  const [zoomLevel, setZoomLevel] = useRecoilState(PDFRendererState.zoomLevel);
+  const resetZoomLevel = useResetRecoilState(PDFRendererState.zoomLevel);
+  const numPages = useRecoilValue(PDFRendererState.numPages);
 
-  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
+  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
 
   return (
     <Container id="pdf-controls">

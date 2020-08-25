@@ -145,14 +145,14 @@ Inside JPGRenderer, export a functional component of type `DocRenderer`
 import React from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import MainAtoms from "../../state/atoms";
+import DocViewerState from "../../state";
 import { DocRenderer } from "../../types";
 import linkRenderResponder from "../../utils/linkRenderResponder";
 
 // Be sure that Renderer correctly uses type DocRenderer
 const JPGRenderer: DocRenderer = () => {
   // Fetch the currentDocument loaded from main component state
-  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
+  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
 
   if (!currentDocument) return null;
 

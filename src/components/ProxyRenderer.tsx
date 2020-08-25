@@ -1,17 +1,17 @@
 import React, { FC, useCallback } from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from "styled-components";
-import MainAtoms from "../state/atoms";
+import DocViewerState from "../state";
 import useDocumentLoader from "../utils/useDocumentLoader";
 import useWindowSize from "../utils/useWindowSize";
 
 const ProxyRenderer: FC<{}> = () => {
   const { CurrentRenderer } = useDocumentLoader();
 
-  const setRendererRect = useSetRecoilState(MainAtoms.rendererRectState);
-  const currentDocument = useRecoilValue(MainAtoms.currentDocumentState);
-  const documentLoading = useRecoilValue(MainAtoms.documentLoadingState);
-  const documents = useRecoilValue(MainAtoms.documentsState);
+  const setRendererRect = useSetRecoilState(DocViewerState.rendererRect);
+  const currentDocument = useRecoilValue(DocViewerState.currentDocument);
+  const documentLoading = useRecoilValue(DocViewerState.documentLoading);
+  const documents = useRecoilValue(DocViewerState.documents);
 
   const size = useWindowSize();
 

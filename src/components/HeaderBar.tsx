@@ -1,13 +1,13 @@
 import React, { FC } from "react";
 import { useRecoilValue } from "recoil";
 import styled from "styled-components";
-import MainAtoms from "../state/atoms";
+import DocViewerState from "../state";
 import { IStyledProps } from "../types";
 import DocumentNav from "./DocumentNav";
 import FileName from "./FileName";
 
 const HeaderBar: FC<{}> = () => {
-  const config = useRecoilValue(MainAtoms.configState);
+  const config = useRecoilValue(DocViewerState.config);
 
   if (config?.header?.disableHeader) return null;
 

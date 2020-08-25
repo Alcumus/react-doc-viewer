@@ -8,6 +8,10 @@ ReactDOM.render(
   <React.StrictMode>
     <DocViewer
       documents={[
+        {
+          uri:
+            "https://file-examples-com.github.io/uploads/2017/10/file-sample_150kB.pdf",
+        },
         { uri: require("./_example-files_/pdf.pdf") },
         { uri: require("./_example-files_/png.png") },
         { uri: require("./_example-files_/gif.gif") },
