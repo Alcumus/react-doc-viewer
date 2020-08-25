@@ -26,6 +26,7 @@ export type FileType =
   | "application/pdf"
   | "image/png"
   | "image/jpg"
+  | "image/gif"
   | "image/jpeg";
 
 export interface IDocument {
