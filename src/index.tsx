@@ -9,6 +9,7 @@ ReactDOM.render(
     <DocViewer
       documents={[
         { uri: require("./_example-files_/pdf.pdf") },
+        { uri: require("./_example-files_/png.png") },
         { uri: require("./_example-files_/gif.gif") },
       ]}
     />
