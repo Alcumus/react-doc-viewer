@@ -55,7 +55,7 @@ const PDFControls: FC<{}> = () => {
 
       <Button
         id="pdf-zoom-reset"
-        onMouseDown={() => resetZoomLevel}
+        onMouseDown={() => resetZoomLevel()}
         disabled={zoomLevel === initialPDFState.zoomLevel}
       >
         <FontAwesomeIcon icon={faExpand} />
