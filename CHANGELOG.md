@@ -1,5 +1,15 @@
 #### 0.0.12 (2020-08-25)
 
+##### Chores
+
+*  Tidied state atoms etc. (fbb5ede2)
+
+##### Bug Fixes
+
+* **PDFRenderer Reset Zoom Broken:**  resetZoomLevel function wasn't being called (4b3b9918)
+
+#### 0.0.12 (2020-08-25)
+
 ##### Bug Fixes
 
 * **PDFRenderer Reset Zoom Broken:**  resetZoomLevel function wasn't being called (4b3b9918)
