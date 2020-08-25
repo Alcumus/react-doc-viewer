@@ -1,3 +1,13 @@
+#### 0.0.11 (2020-08-25)
+
+##### Bug Fixes
+
+*  sever was incorrect for build-release options (2ebe713b)
+
+##### Tests
+
+*  Added example png for testing purposes (9c3c6cf6)
+
 #### 0.0.10 (2020-08-24)
 
 #### 0.0.9 (2020-08-24)
