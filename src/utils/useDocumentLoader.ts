@@ -33,7 +33,7 @@ export const useDocumentLoader = (): {
       const controller = new AbortController();
       const { signal } = controller;
 
-      fetch(documentURI, { method: "HEAD", signal }).then((response) => {
+      fetch(documentURI, { method: "HEAD", signal, headers: currentDocument.headers }).then((response) => {
         const contentTypeRaw = response.headers.get("content-type");
         const contentTypes = contentTypeRaw?.split(";") || [];
         const contentType = contentTypes.length ? contentTypes[0] : undefined;
@@ -80,9 +80,9 @@ export const useDocumentLoader = (): {
     if (CurrentRenderer === null) {
       dispatch(setDocumentLoading(false));
     } else if (CurrentRenderer.fileLoader !== undefined) {
-      CurrentRenderer.fileLoader?.({ documentURI, signal, fileLoaderComplete });
+      CurrentRenderer.fileLoader?.({ documentURI, signal, fileLoaderComplete, headers: currentDocument.headers });
     } else {
-      defaultFileLoader({ documentURI, signal, fileLoaderComplete });
+      defaultFileLoader({ documentURI, signal, fileLoaderComplete, headers: currentDocument.headers });
     }
 
     return () => {

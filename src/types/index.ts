@@ -37,6 +37,7 @@ export interface IDocument {
   uri: string;
   fileType?: string;
   fileData?: string | ArrayBuffer;
+  headers?: Record<string, string>;
 }
 
 export interface DocRendererProps {
@@ -46,4 +47,5 @@ export interface DocRenderer extends FC<DocRendererProps> {
   fileTypes: string[];
   weight: number;
   fileLoader?: FileLoaderFunction | null | undefined;
+  headers?: Record<string, string>;
 }
