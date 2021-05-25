@@ -1,11 +1,11 @@
 {
- "name": "react-doc-viewer",
- "version": "0.1.5",
+ "name": "react-docs-viewer",
+ "version": "0.0.2",
  "description": "Document viewer for react. Renders online/local documents.",
- "author": "Matthew Mogford",
+ "author": "Tawhid Abdullah",
  "license": "ISC",
  "repository": {
-  "url": "https://github.com/Alcumus/react-doc-viewer"
+  "url": "https://github.com/tawhidabdullah/react-docs-viewer"
  },
  "main": "build/index.js",
  "types": "build/index.d.ts",
