@@ -1,3 +1,9 @@
+#### 0.1.7 (2024-05-13)
+
+##### Chores
+
+* **deps:**  update dependency pdfjs-dist to v4 ([556a0956](https://github.com/Alcumus/react-doc-viewer/commit/556a0956c4447bdf95a8bf17ea5595cf97c54fdd))
+
 #### 0.1.6 (2024-05-13)
 
 #### 0.1.5 (2020-10-29)
