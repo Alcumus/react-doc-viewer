@@ -12,7 +12,7 @@
  "dependencies": {
   "pdfjs-dist": "4.2.67",
   "react-pdf": "8.0.2",
-  "styled-components": "^5.1.1",
+  "styled-components": "^5.3.11",
   "wl-msg-reader": "^0.2.0"
  },
  "devDependencies": {
