@@ -1,3 +1,9 @@
+#### 0.1.8 (2024-05-14)
+
+##### Chores
+
+* **deps:**  update dependency react-pdf to v8 ([f54d0585](https://github.com/Alcumus/react-doc-viewer/commit/f54d05855f764ca1c522157116e832ee8ca7caf0))
+
 #### 0.1.7 (2024-05-13)
 
 ##### Chores
