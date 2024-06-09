@@ -10,8 +10,8 @@
  "main": "build/index.js",
  "types": "build/index.d.ts",
  "dependencies": {
-  "pdfjs-dist": "4.2.67",
-  "react-pdf": "8.0.2",
+  "pdfjs-dist": "4.3.136",
+  "react-pdf": "9.0.0",
   "styled-components": "^5.3.11",
   "wl-msg-reader": "^0.2.0"
  },
