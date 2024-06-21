@@ -2,6 +2,10 @@ import { act, render } from "@testing-library/react";
 import React from "react";
 import DocViewer from "..";
 
+jest.mock("../utils/importMeta", () => ({
+  getMetaURL: jest.fn(() => "http://localhost"),
+}));
+
 test("renders component with no documents", () => {
   const comp = render(<DocViewer documents={[]} />);
   expect(comp?.getByTestId("react-doc-viewer")).toMatchSnapshot();

@@ -10,8 +10,7 @@
  "main": "build/index.js",
  "types": "build/index.d.ts",
  "dependencies": {
-  "pdfjs-dist": "4.2.67",
-  "react-pdf": "8.0.2",
+  "react-pdf": "9.0.0",
   "styled-components": "^5.3.11",
   "wl-msg-reader": "^0.2.0"
  },
@@ -27,8 +26,8 @@
   "generate-changelog": "^1.8.0",
   "react": "^16.13.1",
   "react-dom": "^16.13.1",
-  "react-scripts": "3.4.3",
-  "typescript": "^3.9.7",
+  "react-scripts": "5.0.1",
+  "typescript": "^4.9.5",
   "@types/babel__core": "7.1.19",
   "@types/babel__traverse": "7.17.1"
  },
