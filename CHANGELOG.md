@@ -1,3 +1,14 @@
+#### 0.1.14 (2024-07-31)
+
+##### Bug Fixes
+
+*  readded missing library ([bd833cd5](https://github.com/Alcumus/react-doc-viewer/commit/bd833cd53083a634f3aa685608b733119cb87f92))
+*  possible fix for cjs support ([d69a9111](https://github.com/Alcumus/react-doc-viewer/commit/d69a91111cd65abf8865a9beabeda1b292e3fc0c))
+
+##### Other Changes
+
+*  possible fix for cjs support" ([89b674c5](https://github.com/Alcumus/react-doc-viewer/commit/89b674c513a8733d2fe30adf893b2879dfa26a23))
+
 #### 0.1.13 (2024-06-21)
 
 #### 0.1.12 (2024-06-21)
