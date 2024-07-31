@@ -8,7 +8,7 @@ import PDFPages from "./components/pages/PDFPages";
 import { PDFProvider } from "./state";
 
 pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  "pdfjs-dist/build/pdf.worker.min.js",
+  "pdfjs-dist/build/pdf.worker.min.mjs",
   getMetaURL()
 ).toString();
 
