@@ -35,6 +35,7 @@
  "scripts": {
   "start": "react-scripts start",
   "build": "rm -rf build && tsc -p tsconfig-npm.json",
+  "watch": "rm -rf build && tsc -w -p tsconfig-npm.json",
   "test": "react-scripts test",
   "eject": "react-scripts eject",
   "version:patch": "npm run version:pre && npm run version:changelog && npm version patch && npm run version:post",
