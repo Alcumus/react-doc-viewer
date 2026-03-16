@@ -44,6 +44,8 @@ export const useDocumentLoader = (): {
             fileType: contentType || undefined,
           })
         );
+      }).catch(() => {
+        // Fetch was aborted on unmount or failed — no action needed
       });
 
       return () => {
