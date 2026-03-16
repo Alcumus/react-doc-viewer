@@ -2,17 +2,18 @@
 
 exports[`renders component with no documents 1`] = `
 <div
-  class="sc-fznWqX cxRsBy"
+  class="sc-dtInlp ggGvmM"
   data-testid="react-doc-viewer"
+  documents=""
   id="react-doc-viewer"
 >
   <div
-    class="sc-Axmtr geoSRH"
+    class="sc-imWYAH gFWnHh"
     data-testid="header-bar"
     id="header-bar"
   />
   <div
-    class="sc-AxmLO bNNfcA"
+    class="sc-jXbUNf kAWPOT"
     id="proxy-renderer"
   >
     <div
@@ -24,26 +25,28 @@ exports[`renders component with no documents 1`] = `
 
 exports[`renders component with no file name 1`] = `
 <div
-  class="sc-fznWqX cxRsBy"
+  class="sc-dtInlp ggGvmM"
+  config="[object Object]"
   data-testid="react-doc-viewer"
+  documents="[object Object]"
   id="react-doc-viewer"
 >
   <div
-    class="sc-Axmtr geoSRH"
+    class="sc-imWYAH gFWnHh"
     data-testid="header-bar"
     id="header-bar"
   />
   <div
-    class="sc-AxmLO bNNfcA"
+    class="sc-jXbUNf kAWPOT"
     id="proxy-renderer"
   >
     <div
-      class="sc-fzozJi hXCnGH"
+      class="sc-dhKdcy czhYsV"
       data-testid="loading-renderer"
       id="loading-renderer"
     >
       <div
-        class="sc-fzoLsD dachMJ"
+        class="sc-kpDqfp pgdha"
       >
         <svg
           height="40"
@@ -97,21 +100,23 @@ exports[`renders component with no file name 1`] = `
 
 exports[`renders component with no header 1`] = `
 <div
-  class="sc-fznWqX cxRsBy"
+  class="sc-dtInlp ggGvmM"
+  config="[object Object]"
   data-testid="react-doc-viewer"
+  documents="[object Object]"
   id="react-doc-viewer"
 >
   <div
-    class="sc-AxmLO bNNfcA"
+    class="sc-jXbUNf kAWPOT"
     id="proxy-renderer"
   >
     <div
-      class="sc-fzozJi hXCnGH"
+      class="sc-dhKdcy czhYsV"
       data-testid="loading-renderer"
       id="loading-renderer"
     >
       <div
-        class="sc-fzoLsD dachMJ"
+        class="sc-kpDqfp pgdha"
       >
         <svg
           height="40"
