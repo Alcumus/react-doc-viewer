@@ -1,3 +1,16 @@
+#### 0.1.16 (2026-03-16)
+
+##### Bug Fixes
+
+*  update JSX setting to use react-jsx for improved compatibility ([54cd33d9](https://github.com/Alcumus/react-doc-viewer/commit/54cd33d937f05ae047057ea0de26b6d37178350f))
+*  resolve test failures caused by ESM and styled-components v6 upgrade ([a7b1e75e](https://github.com/Alcumus/react-doc-viewer/commit/a7b1e75eb857391dfd0000a0f701bff8eb707f65))
+*  remove ThemedStyledProps import removed in styled-components v6 ([146a67cf](https://github.com/Alcumus/react-doc-viewer/commit/146a67cf8f67f8b9ad76d3fe12450281f74ef05d))
+*  resolve tar, minimatch and lodash transitive CVEs ([8ce01f24](https://github.com/Alcumus/react-doc-viewer/commit/8ce01f24b76e36483909c22f5c3c436aecb011b1))
+
+##### Other Changes
+
+*  CVE-2025-5889 ([7284d7c4](https://github.com/Alcumus/react-doc-viewer/commit/7284d7c4432095e61b6cc7c5b01617ec07b0ec29))
+
 #### 0.1.15 (2024-07-31)
 
 #### 0.1.14 (2024-07-31)
