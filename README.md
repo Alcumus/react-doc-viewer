@@ -377,6 +377,7 @@ const myHeader: IHeaderOverride = (state, previousDocument, nextDocument) => {
 | --------- | -------- |
 | uri       | `string` |
 | fileType? | `string` |
+| fileName? | `string` |
 | fileData? | `string  | ArrayBuffer` - **Used Internally - Ignored if passed into props** |
 
 ---

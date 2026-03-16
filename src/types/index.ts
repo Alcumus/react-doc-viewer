@@ -36,6 +36,7 @@ export interface IDocument {
   uri: string;
   fileType?: string;
   fileData?: string | ArrayBuffer;
+  fileName?: string;
 }
 
 export interface DocRendererProps {
