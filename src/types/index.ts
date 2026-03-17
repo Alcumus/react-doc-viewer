@@ -4,7 +4,18 @@ import { FileLoaderFunction } from "../utils/fileLoaders";
 
 export interface IConfig {
   header?: IHeaderConfig;
+  loading?: ILoadingConfig;
+  noRenderer?: INoRendererConfig;
 }
+
+export interface ILoadingConfig {
+  overrideComponent?: () => ReactElement<any, any> | null;
+}
+
+export interface INoRendererConfig {
+  overrideComponent?: () => ReactElement<any, any> | null;
+}
+
 export interface IHeaderConfig {
   disableHeader?: boolean;
   disableFileName?: boolean;

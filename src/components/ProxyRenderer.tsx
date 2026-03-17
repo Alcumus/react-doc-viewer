@@ -9,7 +9,7 @@ import { LoadingIcon } from "./icons";
 
 export const ProxyRenderer: FC<{}> = () => {
   const { state, dispatch, CurrentRenderer } = useDocumentLoader();
-  const { documents, documentLoading, currentDocument } = state;
+  const { documents, documentLoading, config, currentDocument } = state;
 
   const size = useWindowSize();
 
@@ -25,6 +25,12 @@ export const ProxyRenderer: FC<{}> = () => {
     if (!documents.length) {
       return <div id="no-documents">{/* No Documents */}</div>;
     } else if (documentLoading) {
+      if (config?.loading?.overrideComponent) {
+        const Loading = config.loading.overrideComponent;
+
+        return <Loading />;
+      }
+
       return (
         <LoadingContainer id="loading-renderer" data-testid="loading-renderer">
           <LoadingIconContainer>
@@ -37,6 +43,10 @@ export const ProxyRenderer: FC<{}> = () => {
         return <CurrentRenderer mainState={state} />;
       } else if (CurrentRenderer === undefined) {
         return null;
+      } else if (config?.noRenderer?.overrideComponent) {
+        const NoRenderer = config.noRenderer.overrideComponent;
+
+        return <NoRenderer />;
       } else {
         return (
           <div id="no-renderer" data-testid="no-renderer">
