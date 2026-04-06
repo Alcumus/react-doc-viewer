@@ -59,7 +59,7 @@ export const useDocumentLoader = (): {
   );
 
   useEffect(() => {
-    if (!currentDocument || CurrentRenderer === undefined) return;
+    if (!currentDocument || currentDocument.fileData || CurrentRenderer === undefined) return;
 
     const controller = new AbortController();
     const { signal } = controller;
@@ -90,7 +90,7 @@ export const useDocumentLoader = (): {
     return () => {
       controller.abort();
     };
-  }, [CurrentRenderer]);
+  }, [CurrentRenderer, currentDocument?.fileData]);
 
   return { state, dispatch, CurrentRenderer };
 };
