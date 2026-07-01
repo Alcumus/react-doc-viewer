@@ -11,7 +11,7 @@
  "types": "build/index.d.ts",
  "dependencies": {
   "pdfjs-dist": "^4.10.38",
-  "react-pdf": "9.0.0",
+  "react-pdf": "9.1.0",
   "styled-components": "^6.1.0",
   "wl-msg-reader": "^0.2.0"
  },
